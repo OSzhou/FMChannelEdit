@@ -30,8 +30,6 @@
 		E5EAA59A1E83D54000E870AF /* YLDragSortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EAA5971E83D54000E870AF /* YLDragSortViewController.m */; };
 		E5EAA5A01E83D55500E870AF /* FMDragSortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EAA59D1E83D55500E870AF /* FMDragSortModel.m */; };
 		E5EAA5A11E83D55500E870AF /* FMHeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EAA59F1E83D55500E870AF /* FMHeaderReusableView.m */; };
-		E5EAA5B71E851BC100E870AF /* ChannelDemo1.gif in Resources */ = {isa = PBXBuildFile; fileRef = E5EAA5B51E851BC100E870AF /* ChannelDemo1.gif */; };
-		E5EAA5B81E851BC100E870AF /* ChannelDemo2.gif in Resources */ = {isa = PBXBuildFile; fileRef = E5EAA5B61E851BC100E870AF /* ChannelDemo2.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,8 +97,6 @@
 		E5EAA59E1E83D55500E870AF /* FMHeaderReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMHeaderReusableView.h; sourceTree = "<group>"; };
 		E5EAA59F1E83D55500E870AF /* FMHeaderReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMHeaderReusableView.m; sourceTree = "<group>"; };
 		E5EAA5A21E83D59100E870AF /* YLDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLDefine.h; sourceTree = "<group>"; };
-		E5EAA5B51E851BC100E870AF /* ChannelDemo1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ChannelDemo1.gif; sourceTree = "<group>"; };
-		E5EAA5B61E851BC100E870AF /* ChannelDemo2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ChannelDemo2.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +147,6 @@
 		E527E6421E5D25DF0069D382 /* 07_ScrollHeaderAndContent */ = {
 			isa = PBXGroup;
 			children = (
-				E5EAA5B41E851BC100E870AF /* ChannelGIF */,
 				E5EAA58A1E83D3F800E870AF /* FMDragSort */,
 				E5EAA57B1E83CF6300E870AF /* LRLChannelEdit */,
 				E5EAA5771E83CD7600E870AF /* PopoverView */,
@@ -252,15 +247,6 @@
 				E5EAA5971E83D54000E870AF /* YLDragSortViewController.m */,
 			);
 			path = FMDragSort;
-			sourceTree = "<group>";
-		};
-		E5EAA5B41E851BC100E870AF /* ChannelGIF */ = {
-			isa = PBXGroup;
-			children = (
-				E5EAA5B51E851BC100E870AF /* ChannelDemo1.gif */,
-				E5EAA5B61E851BC100E870AF /* ChannelDemo2.gif */,
-			);
-			path = ChannelGIF;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,8 +355,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5EAA5B81E851BC100E870AF /* ChannelDemo2.gif in Resources */,
-				E5EAA5B71E851BC100E870AF /* ChannelDemo1.gif in Resources */,
 				E527E6531E5D25DF0069D382 /* LaunchScreen.storyboard in Resources */,
 				E527E6501E5D25DF0069D382 /* Assets.xcassets in Resources */,
 				E5EAA5851E83CF6300E870AF /* LRLChannelEditController.xib in Resources */,
