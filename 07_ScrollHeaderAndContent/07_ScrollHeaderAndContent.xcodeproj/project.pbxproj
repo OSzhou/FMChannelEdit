@@ -1,0 +1,659 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E527E6451E5D25DF0069D382 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E527E6441E5D25DF0069D382 /* main.m */; };
+		E527E6481E5D25DF0069D382 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E527E6471E5D25DF0069D382 /* AppDelegate.m */; };
+		E527E64B1E5D25DF0069D382 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E527E64A1E5D25DF0069D382 /* ViewController.m */; };
+		E527E64E1E5D25DF0069D382 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E527E64C1E5D25DF0069D382 /* Main.storyboard */; };
+		E527E6501E5D25DF0069D382 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E527E64F1E5D25DF0069D382 /* Assets.xcassets */; };
+		E527E6531E5D25DF0069D382 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E527E6511E5D25DF0069D382 /* LaunchScreen.storyboard */; };
+		E527E65E1E5D25DF0069D382 /* _7_ScrollHeaderAndContentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E527E65D1E5D25DF0069D382 /* _7_ScrollHeaderAndContentTests.m */; };
+		E527E6691E5D25DF0069D382 /* _7_ScrollHeaderAndContentUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E527E6681E5D25DF0069D382 /* _7_ScrollHeaderAndContentUITests.m */; };
+		E527E6791E5D27470069D382 /* FMBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E527E6781E5D27470069D382 /* FMBasicViewController.m */; };
+		E527E67C1E5D28A60069D382 /* FMChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E527E67B1E5D28A60069D382 /* FMChildViewController.m */; };
+		E527E67F1E5D2CFC0069D382 /* FMTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E527E67E1E5D2CFC0069D382 /* FMTitleLabel.m */; };
+		E5EAA57A1E83CD7600E870AF /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EAA5791E83CD7600E870AF /* PopoverView.m */; };
+		E5EAA5831E83CF6300E870AF /* ChannelUnitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EAA57D1E83CF6300E870AF /* ChannelUnitModel.m */; };
+		E5EAA5841E83CF6300E870AF /* LRLChannelEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EAA57F1E83CF6300E870AF /* LRLChannelEditController.m */; };
+		E5EAA5851E83CF6300E870AF /* LRLChannelEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5EAA5801E83CF6300E870AF /* LRLChannelEditController.xib */; };
+		E5EAA5861E83CF6300E870AF /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EAA5821E83CF6300E870AF /* TouchView.m */; };
+		E5EAA5891E83CFC900E870AF /* FMFirstSortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EAA5881E83CFC900E870AF /* FMFirstSortViewController.m */; };
+		E5EAA5911E83D53200E870AF /* YLDragSortTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EAA5901E83D53200E870AF /* YLDragSortTool.m */; };
+		E5EAA5981E83D54000E870AF /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EAA5931E83D54000E870AF /* UIView+Frame.m */; };
+		E5EAA5991E83D54000E870AF /* YLDargSortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EAA5951E83D54000E870AF /* YLDargSortCell.m */; };
+		E5EAA59A1E83D54000E870AF /* YLDragSortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EAA5971E83D54000E870AF /* YLDragSortViewController.m */; };
+		E5EAA5A01E83D55500E870AF /* FMDragSortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EAA59D1E83D55500E870AF /* FMDragSortModel.m */; };
+		E5EAA5A11E83D55500E870AF /* FMHeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5EAA59F1E83D55500E870AF /* FMHeaderReusableView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E527E65A1E5D25DF0069D382 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E527E6381E5D25DF0069D382 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E527E63F1E5D25DF0069D382;
+			remoteInfo = 07_ScrollHeaderAndContent;
+		};
+		E527E6651E5D25DF0069D382 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E527E6381E5D25DF0069D382 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E527E63F1E5D25DF0069D382;
+			remoteInfo = 07_ScrollHeaderAndContent;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E527E6401E5D25DF0069D382 /* 07_ScrollHeaderAndContent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 07_ScrollHeaderAndContent.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E527E6441E5D25DF0069D382 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E527E6461E5D25DF0069D382 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E527E6471E5D25DF0069D382 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E527E6491E5D25DF0069D382 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E527E64A1E5D25DF0069D382 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E527E64D1E5D25DF0069D382 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E527E64F1E5D25DF0069D382 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E527E6521E5D25DF0069D382 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E527E6541E5D25DF0069D382 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E527E6591E5D25DF0069D382 /* 07_ScrollHeaderAndContentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 07_ScrollHeaderAndContentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E527E65D1E5D25DF0069D382 /* _7_ScrollHeaderAndContentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _7_ScrollHeaderAndContentTests.m; sourceTree = "<group>"; };
+		E527E65F1E5D25DF0069D382 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E527E6641E5D25DF0069D382 /* 07_ScrollHeaderAndContentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 07_ScrollHeaderAndContentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E527E6681E5D25DF0069D382 /* _7_ScrollHeaderAndContentUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _7_ScrollHeaderAndContentUITests.m; sourceTree = "<group>"; };
+		E527E66A1E5D25DF0069D382 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E527E6771E5D27470069D382 /* FMBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMBasicViewController.h; sourceTree = "<group>"; };
+		E527E6781E5D27470069D382 /* FMBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMBasicViewController.m; sourceTree = "<group>"; };
+		E527E67A1E5D28A60069D382 /* FMChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMChildViewController.h; sourceTree = "<group>"; };
+		E527E67B1E5D28A60069D382 /* FMChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMChildViewController.m; sourceTree = "<group>"; };
+		E527E67D1E5D2CFC0069D382 /* FMTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMTitleLabel.h; sourceTree = "<group>"; };
+		E527E67E1E5D2CFC0069D382 /* FMTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMTitleLabel.m; sourceTree = "<group>"; };
+		E5EAA5781E83CD7600E870AF /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
+		E5EAA5791E83CD7600E870AF /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
+		E5EAA57C1E83CF6300E870AF /* ChannelUnitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelUnitModel.h; sourceTree = "<group>"; };
+		E5EAA57D1E83CF6300E870AF /* ChannelUnitModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelUnitModel.m; sourceTree = "<group>"; };
+		E5EAA57E1E83CF6300E870AF /* LRLChannelEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRLChannelEditController.h; sourceTree = "<group>"; };
+		E5EAA57F1E83CF6300E870AF /* LRLChannelEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRLChannelEditController.m; sourceTree = "<group>"; };
+		E5EAA5801E83CF6300E870AF /* LRLChannelEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LRLChannelEditController.xib; sourceTree = "<group>"; };
+		E5EAA5811E83CF6300E870AF /* TouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchView.h; sourceTree = "<group>"; };
+		E5EAA5821E83CF6300E870AF /* TouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchView.m; sourceTree = "<group>"; };
+		E5EAA5871E83CFC900E870AF /* FMFirstSortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMFirstSortViewController.h; sourceTree = "<group>"; };
+		E5EAA5881E83CFC900E870AF /* FMFirstSortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMFirstSortViewController.m; sourceTree = "<group>"; };
+		E5EAA58F1E83D53200E870AF /* YLDragSortTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLDragSortTool.h; sourceTree = "<group>"; };
+		E5EAA5901E83D53200E870AF /* YLDragSortTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLDragSortTool.m; sourceTree = "<group>"; };
+		E5EAA5921E83D54000E870AF /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		E5EAA5931E83D54000E870AF /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		E5EAA5941E83D54000E870AF /* YLDargSortCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLDargSortCell.h; sourceTree = "<group>"; };
+		E5EAA5951E83D54000E870AF /* YLDargSortCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLDargSortCell.m; sourceTree = "<group>"; };
+		E5EAA5961E83D54000E870AF /* YLDragSortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLDragSortViewController.h; sourceTree = "<group>"; };
+		E5EAA5971E83D54000E870AF /* YLDragSortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLDragSortViewController.m; sourceTree = "<group>"; };
+		E5EAA59B1E83D55500E870AF /* FMDrag.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDrag.pch; sourceTree = "<group>"; };
+		E5EAA59C1E83D55500E870AF /* FMDragSortModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDragSortModel.h; sourceTree = "<group>"; };
+		E5EAA59D1E83D55500E870AF /* FMDragSortModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDragSortModel.m; sourceTree = "<group>"; };
+		E5EAA59E1E83D55500E870AF /* FMHeaderReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMHeaderReusableView.h; sourceTree = "<group>"; };
+		E5EAA59F1E83D55500E870AF /* FMHeaderReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMHeaderReusableView.m; sourceTree = "<group>"; };
+		E5EAA5A21E83D59100E870AF /* YLDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLDefine.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E527E63D1E5D25DF0069D382 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E527E6561E5D25DF0069D382 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E527E6611E5D25DF0069D382 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E527E6371E5D25DF0069D382 = {
+			isa = PBXGroup;
+			children = (
+				E527E6421E5D25DF0069D382 /* 07_ScrollHeaderAndContent */,
+				E527E65C1E5D25DF0069D382 /* 07_ScrollHeaderAndContentTests */,
+				E527E6671E5D25DF0069D382 /* 07_ScrollHeaderAndContentUITests */,
+				E527E6411E5D25DF0069D382 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E527E6411E5D25DF0069D382 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E527E6401E5D25DF0069D382 /* 07_ScrollHeaderAndContent.app */,
+				E527E6591E5D25DF0069D382 /* 07_ScrollHeaderAndContentTests.xctest */,
+				E527E6641E5D25DF0069D382 /* 07_ScrollHeaderAndContentUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E527E6421E5D25DF0069D382 /* 07_ScrollHeaderAndContent */ = {
+			isa = PBXGroup;
+			children = (
+				E5EAA58A1E83D3F800E870AF /* FMDragSort */,
+				E5EAA57B1E83CF6300E870AF /* LRLChannelEdit */,
+				E5EAA5771E83CD7600E870AF /* PopoverView */,
+				E527E6761E5D26480069D382 /* ScrollH&C */,
+				E527E6461E5D25DF0069D382 /* AppDelegate.h */,
+				E527E6471E5D25DF0069D382 /* AppDelegate.m */,
+				E527E6491E5D25DF0069D382 /* ViewController.h */,
+				E527E64A1E5D25DF0069D382 /* ViewController.m */,
+				E527E64C1E5D25DF0069D382 /* Main.storyboard */,
+				E527E64F1E5D25DF0069D382 /* Assets.xcassets */,
+				E527E6511E5D25DF0069D382 /* LaunchScreen.storyboard */,
+				E527E6541E5D25DF0069D382 /* Info.plist */,
+				E527E6431E5D25DF0069D382 /* Supporting Files */,
+			);
+			path = 07_ScrollHeaderAndContent;
+			sourceTree = "<group>";
+		};
+		E527E6431E5D25DF0069D382 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E527E6441E5D25DF0069D382 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E527E65C1E5D25DF0069D382 /* 07_ScrollHeaderAndContentTests */ = {
+			isa = PBXGroup;
+			children = (
+				E527E65D1E5D25DF0069D382 /* _7_ScrollHeaderAndContentTests.m */,
+				E527E65F1E5D25DF0069D382 /* Info.plist */,
+			);
+			path = 07_ScrollHeaderAndContentTests;
+			sourceTree = "<group>";
+		};
+		E527E6671E5D25DF0069D382 /* 07_ScrollHeaderAndContentUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E527E6681E5D25DF0069D382 /* _7_ScrollHeaderAndContentUITests.m */,
+				E527E66A1E5D25DF0069D382 /* Info.plist */,
+			);
+			path = 07_ScrollHeaderAndContentUITests;
+			sourceTree = "<group>";
+		};
+		E527E6761E5D26480069D382 /* ScrollH&C */ = {
+			isa = PBXGroup;
+			children = (
+				E527E6771E5D27470069D382 /* FMBasicViewController.h */,
+				E527E6781E5D27470069D382 /* FMBasicViewController.m */,
+				E527E67A1E5D28A60069D382 /* FMChildViewController.h */,
+				E527E67B1E5D28A60069D382 /* FMChildViewController.m */,
+				E527E67D1E5D2CFC0069D382 /* FMTitleLabel.h */,
+				E527E67E1E5D2CFC0069D382 /* FMTitleLabel.m */,
+			);
+			path = "ScrollH&C";
+			sourceTree = "<group>";
+		};
+		E5EAA5771E83CD7600E870AF /* PopoverView */ = {
+			isa = PBXGroup;
+			children = (
+				E5EAA5781E83CD7600E870AF /* PopoverView.h */,
+				E5EAA5791E83CD7600E870AF /* PopoverView.m */,
+			);
+			path = PopoverView;
+			sourceTree = "<group>";
+		};
+		E5EAA57B1E83CF6300E870AF /* LRLChannelEdit */ = {
+			isa = PBXGroup;
+			children = (
+				E5EAA57C1E83CF6300E870AF /* ChannelUnitModel.h */,
+				E5EAA57D1E83CF6300E870AF /* ChannelUnitModel.m */,
+				E5EAA57E1E83CF6300E870AF /* LRLChannelEditController.h */,
+				E5EAA57F1E83CF6300E870AF /* LRLChannelEditController.m */,
+				E5EAA5801E83CF6300E870AF /* LRLChannelEditController.xib */,
+				E5EAA5811E83CF6300E870AF /* TouchView.h */,
+				E5EAA5821E83CF6300E870AF /* TouchView.m */,
+				E5EAA5871E83CFC900E870AF /* FMFirstSortViewController.h */,
+				E5EAA5881E83CFC900E870AF /* FMFirstSortViewController.m */,
+			);
+			path = LRLChannelEdit;
+			sourceTree = "<group>";
+		};
+		E5EAA58A1E83D3F800E870AF /* FMDragSort */ = {
+			isa = PBXGroup;
+			children = (
+				E5EAA5A21E83D59100E870AF /* YLDefine.h */,
+				E5EAA59B1E83D55500E870AF /* FMDrag.pch */,
+				E5EAA59C1E83D55500E870AF /* FMDragSortModel.h */,
+				E5EAA59D1E83D55500E870AF /* FMDragSortModel.m */,
+				E5EAA59E1E83D55500E870AF /* FMHeaderReusableView.h */,
+				E5EAA59F1E83D55500E870AF /* FMHeaderReusableView.m */,
+				E5EAA58F1E83D53200E870AF /* YLDragSortTool.h */,
+				E5EAA5901E83D53200E870AF /* YLDragSortTool.m */,
+				E5EAA5921E83D54000E870AF /* UIView+Frame.h */,
+				E5EAA5931E83D54000E870AF /* UIView+Frame.m */,
+				E5EAA5941E83D54000E870AF /* YLDargSortCell.h */,
+				E5EAA5951E83D54000E870AF /* YLDargSortCell.m */,
+				E5EAA5961E83D54000E870AF /* YLDragSortViewController.h */,
+				E5EAA5971E83D54000E870AF /* YLDragSortViewController.m */,
+			);
+			path = FMDragSort;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E527E63F1E5D25DF0069D382 /* 07_ScrollHeaderAndContent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E527E66D1E5D25DF0069D382 /* Build configuration list for PBXNativeTarget "07_ScrollHeaderAndContent" */;
+			buildPhases = (
+				E527E63C1E5D25DF0069D382 /* Sources */,
+				E527E63D1E5D25DF0069D382 /* Frameworks */,
+				E527E63E1E5D25DF0069D382 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = 07_ScrollHeaderAndContent;
+			productName = 07_ScrollHeaderAndContent;
+			productReference = E527E6401E5D25DF0069D382 /* 07_ScrollHeaderAndContent.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E527E6581E5D25DF0069D382 /* 07_ScrollHeaderAndContentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E527E6701E5D25DF0069D382 /* Build configuration list for PBXNativeTarget "07_ScrollHeaderAndContentTests" */;
+			buildPhases = (
+				E527E6551E5D25DF0069D382 /* Sources */,
+				E527E6561E5D25DF0069D382 /* Frameworks */,
+				E527E6571E5D25DF0069D382 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E527E65B1E5D25DF0069D382 /* PBXTargetDependency */,
+			);
+			name = 07_ScrollHeaderAndContentTests;
+			productName = 07_ScrollHeaderAndContentTests;
+			productReference = E527E6591E5D25DF0069D382 /* 07_ScrollHeaderAndContentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E527E6631E5D25DF0069D382 /* 07_ScrollHeaderAndContentUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E527E6731E5D25DF0069D382 /* Build configuration list for PBXNativeTarget "07_ScrollHeaderAndContentUITests" */;
+			buildPhases = (
+				E527E6601E5D25DF0069D382 /* Sources */,
+				E527E6611E5D25DF0069D382 /* Frameworks */,
+				E527E6621E5D25DF0069D382 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E527E6661E5D25DF0069D382 /* PBXTargetDependency */,
+			);
+			name = 07_ScrollHeaderAndContentUITests;
+			productName = 07_ScrollHeaderAndContentUITests;
+			productReference = E527E6641E5D25DF0069D382 /* 07_ScrollHeaderAndContentUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E527E6381E5D25DF0069D382 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Windy;
+				TargetAttributes = {
+					E527E63F1E5D25DF0069D382 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					E527E6581E5D25DF0069D382 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E527E63F1E5D25DF0069D382;
+					};
+					E527E6631E5D25DF0069D382 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E527E63F1E5D25DF0069D382;
+					};
+				};
+			};
+			buildConfigurationList = E527E63B1E5D25DF0069D382 /* Build configuration list for PBXProject "07_ScrollHeaderAndContent" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E527E6371E5D25DF0069D382;
+			productRefGroup = E527E6411E5D25DF0069D382 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E527E63F1E5D25DF0069D382 /* 07_ScrollHeaderAndContent */,
+				E527E6581E5D25DF0069D382 /* 07_ScrollHeaderAndContentTests */,
+				E527E6631E5D25DF0069D382 /* 07_ScrollHeaderAndContentUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E527E63E1E5D25DF0069D382 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E527E6531E5D25DF0069D382 /* LaunchScreen.storyboard in Resources */,
+				E527E6501E5D25DF0069D382 /* Assets.xcassets in Resources */,
+				E5EAA5851E83CF6300E870AF /* LRLChannelEditController.xib in Resources */,
+				E527E64E1E5D25DF0069D382 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E527E6571E5D25DF0069D382 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E527E6621E5D25DF0069D382 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E527E63C1E5D25DF0069D382 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5EAA5861E83CF6300E870AF /* TouchView.m in Sources */,
+				E527E64B1E5D25DF0069D382 /* ViewController.m in Sources */,
+				E5EAA5991E83D54000E870AF /* YLDargSortCell.m in Sources */,
+				E5EAA5A11E83D55500E870AF /* FMHeaderReusableView.m in Sources */,
+				E527E6481E5D25DF0069D382 /* AppDelegate.m in Sources */,
+				E527E67F1E5D2CFC0069D382 /* FMTitleLabel.m in Sources */,
+				E5EAA5911E83D53200E870AF /* YLDragSortTool.m in Sources */,
+				E5EAA5A01E83D55500E870AF /* FMDragSortModel.m in Sources */,
+				E5EAA5981E83D54000E870AF /* UIView+Frame.m in Sources */,
+				E5EAA59A1E83D54000E870AF /* YLDragSortViewController.m in Sources */,
+				E5EAA5841E83CF6300E870AF /* LRLChannelEditController.m in Sources */,
+				E527E6791E5D27470069D382 /* FMBasicViewController.m in Sources */,
+				E5EAA57A1E83CD7600E870AF /* PopoverView.m in Sources */,
+				E527E67C1E5D28A60069D382 /* FMChildViewController.m in Sources */,
+				E527E6451E5D25DF0069D382 /* main.m in Sources */,
+				E5EAA5891E83CFC900E870AF /* FMFirstSortViewController.m in Sources */,
+				E5EAA5831E83CF6300E870AF /* ChannelUnitModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E527E6551E5D25DF0069D382 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E527E65E1E5D25DF0069D382 /* _7_ScrollHeaderAndContentTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E527E6601E5D25DF0069D382 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E527E6691E5D25DF0069D382 /* _7_ScrollHeaderAndContentUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E527E65B1E5D25DF0069D382 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E527E63F1E5D25DF0069D382 /* 07_ScrollHeaderAndContent */;
+			targetProxy = E527E65A1E5D25DF0069D382 /* PBXContainerItemProxy */;
+		};
+		E527E6661E5D25DF0069D382 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E527E63F1E5D25DF0069D382 /* 07_ScrollHeaderAndContent */;
+			targetProxy = E527E6651E5D25DF0069D382 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E527E64C1E5D25DF0069D382 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E527E64D1E5D25DF0069D382 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E527E6511E5D25DF0069D382 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E527E6521E5D25DF0069D382 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E527E66B1E5D25DF0069D382 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = 07_ScrollHeaderAndContent/FMDragSort/FMDrag.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E527E66C1E5D25DF0069D382 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = 07_ScrollHeaderAndContent/FMDragSort/FMDrag.pch;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E527E66E1E5D25DF0069D382 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = 07_ScrollHeaderAndContent/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "senyint.-7-ScrollHeaderAndContent";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E527E66F1E5D25DF0069D382 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = 07_ScrollHeaderAndContent/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "senyint.-7-ScrollHeaderAndContent";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E527E6711E5D25DF0069D382 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = 07_ScrollHeaderAndContentTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "senyint.-7-ScrollHeaderAndContentTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/07_ScrollHeaderAndContent.app/07_ScrollHeaderAndContent";
+			};
+			name = Debug;
+		};
+		E527E6721E5D25DF0069D382 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = 07_ScrollHeaderAndContentTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "senyint.-7-ScrollHeaderAndContentTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/07_ScrollHeaderAndContent.app/07_ScrollHeaderAndContent";
+			};
+			name = Release;
+		};
+		E527E6741E5D25DF0069D382 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = 07_ScrollHeaderAndContentUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "senyint.-7-ScrollHeaderAndContentUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = 07_ScrollHeaderAndContent;
+			};
+			name = Debug;
+		};
+		E527E6751E5D25DF0069D382 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = 07_ScrollHeaderAndContentUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "senyint.-7-ScrollHeaderAndContentUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = 07_ScrollHeaderAndContent;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E527E63B1E5D25DF0069D382 /* Build configuration list for PBXProject "07_ScrollHeaderAndContent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E527E66B1E5D25DF0069D382 /* Debug */,
+				E527E66C1E5D25DF0069D382 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E527E66D1E5D25DF0069D382 /* Build configuration list for PBXNativeTarget "07_ScrollHeaderAndContent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E527E66E1E5D25DF0069D382 /* Debug */,
+				E527E66F1E5D25DF0069D382 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E527E6701E5D25DF0069D382 /* Build configuration list for PBXNativeTarget "07_ScrollHeaderAndContentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E527E6711E5D25DF0069D382 /* Debug */,
+				E527E6721E5D25DF0069D382 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E527E6731E5D25DF0069D382 /* Build configuration list for PBXNativeTarget "07_ScrollHeaderAndContentUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E527E6741E5D25DF0069D382 /* Debug */,
+				E527E6751E5D25DF0069D382 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E527E6381E5D25DF0069D382 /* Project object */;
+}
