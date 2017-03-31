@@ -57,6 +57,7 @@
 @property (nonatomic, strong) ChannelUnitModel *initialIndexModel;
 @property (nonatomic, strong) TouchView *initalTouchView;
 @property (nonatomic, assign) NSInteger locationIndex;
+@property (nonatomic, assign) BOOL isDragging;
 
 @end
 
@@ -168,19 +169,32 @@
 #pragma mark - 从上部删除到下部
 -(void)topTapAct:(UITapGestureRecognizer *)tap{
     TouchView *touchView = (TouchView *)tap.view;
-    NSInteger index = [self.topViewArr indexOfObject:touchView];
+    NSInteger index;
+    if (_isDragging) {
+        index = _moveIndex;
+    } else {
+        index = [self.topViewArr indexOfObject:touchView];
+    }
     if (_isEditing) {//编辑状态下
         [self.scrollView bringSubviewToFront:touchView];
         //获取点击view的位置(操作视图)
         [self.bottomViewArr insertObject:touchView atIndex:0];
-        [self.topViewArr removeObject:touchView];
-        //为了安全, 加判断(操作数据源)
-        if (index < self.topDataSource.count) {
-            ChannelUnitModel *cModel = self.topDataSource[index];
-            cModel.isTop = NO;
-            [self.bottomDataSource insertObject:cModel atIndex:0];
-            [self.topDataSource removeObjectAtIndex:index];
+        if (_isDragging) {
+            self.touchingModel.isTop = NO;
+            [self.bottomDataSource insertObject:self.touchingModel atIndex:0];
+            _isDragging = NO;
+        } else {
+            [self.topViewArr removeObject:touchView];
+            if (index < self.topDataSource.count) {
+                ChannelUnitModel *cModel = self.topDataSource[index];
+                cModel.isTop = NO;
+                [self.bottomDataSource insertObject:cModel atIndex:0];
+                [self.topDataSource removeObjectAtIndex:index];
+            }
         }
+        //为了安全, 加判断(操作数据源)
+        NSLog(@"top --- index --- %ld --- %zd", (long)index, self.topDataSource.count);
+       
         
         [UIView animateWithDuration:0.3 animations:^{
             self.bottomLabel.frame = CGRectMake(10, TopEdge + 25 + self.topHeight, 200, 20);
@@ -226,10 +240,11 @@
     [self.scrollView bringSubviewToFront:touchView];
     NSInteger index = [self.bottomViewArr indexOfObject:touchView];
     //操作视图数组
-    [self.topViewArr addObject:touchView];
     [self.bottomViewArr removeObject:touchView];
+    [self.topViewArr addObject:touchView];
     //为了安全, 加判断
     //操作数据源数组
+    NSLog(@"bottom --- index --- %zd --- %zd", index, self.bottomDataSource.count);
     if (index < self.bottomDataSource.count) {
         ChannelUnitModel *model = self.bottomDataSource[index];
         model.isTop = YES;
@@ -248,6 +263,8 @@
         //因为默认都是添加到上部最后一个位置，所以直接添加上去（不去整体刷新了，节省性能）
         touchView.frame = CGRectMake(EdgeX + i%ButtonCountOneRow * ButtonWidth, TopEdge + i/ButtonCountOneRow*ButtonHeight, ButtonWidth, ButtonHeight);
         self.bottomLabel.frame = CGRectMake(10, TopEdge + 25 + self.topHeight, 200, 20);
+        //TODO:更改
+//        [self reconfigTopView];
         [self reconfigBottomView];
         touchView.closeImageView.hidden = !_isEditing;
     }];
@@ -272,6 +289,7 @@
         [touchView inOrOutTouching:YES];
         //记录移动的label最初的index
         _moveIndex = [self.topViewArr indexOfObject:touchView];
+        NSLog(@" ----->>>>> %zd", _moveIndex);
         if (_moveIndex < self.topDataSource.count) {
             self.touchingModel = self.topDataSource[_moveIndex];
         }
@@ -327,6 +345,7 @@
                 if ([self.topDataSource containsObject:self.placeHolderModel]) {
                     [self.topDataSource removeObject:self.placeHolderModel];
                 }
+                _isDragging = YES;
                 [self topTapAct:touchView.tap];
                 return;
             } else {
@@ -458,6 +477,7 @@
                 if ([self.topDataSource containsObject:self.placeHolderModel]) {
                     [self.topDataSource removeObject:self.placeHolderModel];
                 }
+                _isDragging = YES;
                 [self topTapAct:touchView.tap];
                 return;
             } else {
