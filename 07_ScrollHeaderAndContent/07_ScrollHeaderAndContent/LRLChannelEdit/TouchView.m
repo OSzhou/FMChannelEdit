@@ -9,7 +9,7 @@
 #import "TouchView.h"
 
 @implementation TouchView
-
+// 更新字体大小
 -(float)getTextSizeWithInOrOut:(BOOL)inOrOut{
     if (inOrOut) {
         return 15.0;//拖拽时截图的字体大小
@@ -37,7 +37,7 @@
     }
     return self;
 }
-
+// 更新拖拽状态和正常状态
 -(void)inOrOutTouching:(BOOL)inOrOut{
     if (inOrOut) {//拖拽时
         self.contentLabel.frame = self.bounds;

@@ -12,12 +12,14 @@
 
 //左右边距
 #define EdgeX 5
+//上边距
 #define TopEdge 30
 
 //每行频道的个数
 #define ButtonCountOneRow 4
 #define ButtonHeight (ButtonWidth * 4/9)
 #define LocationWidth (ScreenWidth - EdgeX * 2)
+// 默认button之间是无缝链接的，至于视觉效果上的空隙，是上面的label呈现的
 #define ButtonWidth (LocationWidth/ButtonCountOneRow)
 #define ScreenWidth ([UIScreen mainScreen].bounds.size.width)
 #define ScreenHeight ([UIScreen mainScreen].bounds.size.height)
@@ -28,14 +30,15 @@
 
 @interface LRLChannelEditController ()
 {
-    BOOL _isEditing;
-    CGPoint _oldCenter;
-    NSInteger _moveIndex;
+    BOOL _isEditing;// 是否处在编辑状态
+    CGPoint _oldCenter;// 被拖拽View的初始中心点（超出范围后返回原位置使用）
+    NSInteger _moveIndex;// 被移动的View在dataArr中的索引位置
 }
-//上下部分数据源
+/** 四个数组：必不可少 */
+//上下部分数据源（用来返回数据给外面的页面）
 @property (nonatomic, strong) NSMutableArray<ChannelUnitModel *> *topDataSource;
 @property (nonatomic, strong) NSMutableArray<ChannelUnitModel *> *bottomDataSource;
-//上下部分视图源
+//上下部分视图源（用来操作当前的视图）
 @property (nonatomic, strong) NSMutableArray<TouchView *> *topViewArr;
 @property (nonatomic, strong) NSMutableArray<TouchView *> *bottomViewArr;
 /** ”我的栏目“label */
@@ -50,14 +53,23 @@
 @property (nonatomic, weak) IBOutlet UIButton *editButton;
 /** 提示编辑label */
 @property (nonatomic, weak) IBOutlet UILabel *editAlertLabel;
+// 占位图
 @property (nonatomic, strong) TouchView *clearView;
+// 占位的model
 @property (nonatomic, strong) ChannelUnitModel *placeHolderModel;
+// 正在被拖拽的View的model
 @property (nonatomic, strong) ChannelUnitModel *touchingModel;
-
+// 记录进来时默认选中View对应的Mode
 @property (nonatomic, strong) ChannelUnitModel *initialIndexModel;
+// 记录进来时默认选中的View
 @property (nonatomic, strong) TouchView *initalTouchView;
+// 记录进来时默认选中的index
 @property (nonatomic, assign) NSInteger locationIndex;
+// 是否是拖拽
 @property (nonatomic, assign) BOOL isDragging;
+
+// 位于前几个频道默认不可编辑
+@property (nonatomic, assign) NSInteger unableCount;
 
 @end
 
@@ -68,6 +80,7 @@
         self.topDataSource = [NSMutableArray arrayWithArray:topDataArr];
         self.bottomDataSource = [NSMutableArray arrayWithArray:bottomDataSource];
         self.locationIndex = initialIndex;//外部选中的按钮的索引（默认为0）
+        _unableCount = 1;
     }
     return self;
 }
@@ -96,12 +109,13 @@
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(mylongTapAct:)];
     [self.view addGestureRecognizer:longPress];
     for (int i = 0; i < self.topDataSource.count; ++i) {
+        // 取余是所在列，取整是所在行
         TouchView *touchView = [[TouchView alloc] initWithFrame:CGRectMake(5 + i%ButtonCountOneRow * ButtonWidth, TopEdge + i/ButtonCountOneRow * ButtonHeight, ButtonWidth, ButtonHeight)];
         touchView.userInteractionEnabled = YES;
         
         ChannelUnitModel *model = self.topDataSource[i];
         touchView.contentLabel.text = model.name;
-        if (i < 1) { //位于前一个的频道，只添加tap手势, 并且文字颜色为灰色
+        if (i < _unableCount) { //位于前一个的频道，只添加tap手势, 并且文字颜色为灰色
             touchView.contentLabel.textColor = UIColorFromRGB(0xc0c0c0);
             touchView.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(defaultTopTap:)];
             [touchView addGestureRecognizer:touchView.tap];
@@ -144,7 +158,7 @@
         touchView.contentLabel.textAlignment = NSTextAlignmentCenter;
         [self.scrollView addSubview:touchView];
         [self.bottomViewArr addObject:touchView];
-        
+        // 底部只绑定点击事件
         touchView.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bottomTapAct:)];
         [touchView addGestureRecognizer:touchView.tap];
     }
@@ -179,11 +193,11 @@
         [self.scrollView bringSubviewToFront:touchView];
         //获取点击view的位置(操作视图)
         [self.bottomViewArr insertObject:touchView atIndex:0];
-        if (_isDragging) {
+        if (_isDragging) {// 拖拽过来的
             self.touchingModel.isTop = NO;
             [self.bottomDataSource insertObject:self.touchingModel atIndex:0];
             _isDragging = NO;
-        } else {
+        } else { // 点击过来的
             [self.topViewArr removeObject:touchView];
             if (index < self.topDataSource.count) {
                 ChannelUnitModel *cModel = self.topDataSource[index];
@@ -195,7 +209,7 @@
         //为了安全, 加判断(操作数据源)
         NSLog(@"top --- index --- %ld --- %zd", (long)index, self.topDataSource.count);
        
-        
+        // 刷新布局
         [UIView animateWithDuration:0.3 animations:^{
             self.bottomLabel.frame = CGRectMake(10, TopEdge + 25 + self.topHeight, 200, 20);
             [self reconfigTopView];
@@ -217,7 +231,7 @@
         [self returnToHomeWithIndex:index];
     }
 }
-#pragma mark - 点击上边前两个按钮
+#pragma mark - 点击上边前两个按钮（默认不可编辑的按钮）
 -(void)defaultTopTap:(UITapGestureRecognizer *)tap{
     if (!_isEditing) {
         TouchView *touchView = (TouchView *)tap.view;
@@ -248,6 +262,7 @@
     if (index < self.bottomDataSource.count) {
         ChannelUnitModel *model = self.bottomDataSource[index];
         model.isTop = YES;
+        // 如果是一进来选中的model
         if (model == self.initialIndexModel) {
             if (_isEditing) {
             }else{
@@ -300,18 +315,19 @@
         }
         _oldCenter = touchView.center;
     }else if(pan.state == UIGestureRecognizerStateChanged){
+        // translationInView:获取相对于上一个点的偏移量的x，y
         CGPoint movePoint = [pan translationInView:self.scrollView];
         touchView.center = CGPointMake(_oldCenter.x + movePoint.x, _oldCenter.y + movePoint.y);
         CGFloat x = touchView.center.x;
         CGFloat y = touchView.center.y;
         //没有超出范围
-        if (!(x < EdgeX || x > ScreenWidth - EdgeX || y < TopEdge || y > TopEdge + self.topHeight  || (y < (TopEdge + ButtonHeight) && x < (EdgeX + ButtonWidth)))) {
+        if (!(x < EdgeX || x > ScreenWidth - EdgeX || y < TopEdge || y > TopEdge + self.topHeight  || (y < (TopEdge + ButtonHeight) && x < (EdgeX + _unableCount * ButtonWidth)))) {
             //记录移动过程中label所处的index
             int index = ((int)((y - TopEdge)/ButtonHeight)) * ButtonCountOneRow + (int)(x - EdgeX)/ButtonWidth;
             //当index发生改变时, 插入占位的label, 重新布局UI
             if (staticIndex !=index) {
                 staticIndex = index;
-                if (staticIndex < self.topViewArr.count && staticIndex >= 0) {
+                if (staticIndex <= self.topViewArr.count && staticIndex >= 0) {
                     if ([self.topViewArr containsObject:self.clearView]) {
                         [self.topViewArr removeObject:self.clearView];
                     }
@@ -320,7 +336,7 @@
                         [self.scrollView addSubview:self.clearView];
                         [self.scrollView sendSubviewToBack:self.clearView];
                     }
-                    self.clearView.frame = CGRectMake(EdgeX + staticIndex%ButtonCountOneRow * ButtonWidth, TopEdge + staticIndex/ButtonCountOneRow*ButtonHeight, ButtonWidth, ButtonHeight);
+//                    self.clearView.frame = CGRectMake(EdgeX + staticIndex%ButtonCountOneRow * ButtonWidth, TopEdge + staticIndex/ButtonCountOneRow*ButtonHeight, ButtonWidth, ButtonHeight);
                     [UIView animateWithDuration:0.5 animations:^{
                         [self reconfigTopView];
                     }];
@@ -332,7 +348,7 @@
         [touchView inOrOutTouching:NO];
         CGFloat x = touchView.center.x;
         CGFloat y = touchView.center.y;
-        if (x < EdgeX || x > ScreenWidth - EdgeX || y < TopEdge || y > TopEdge + self.topHeight || (y < (TopEdge + ButtonHeight) && x < (EdgeX + ButtonWidth))) {
+        if (x < EdgeX || x > ScreenWidth - EdgeX || y < TopEdge || y > TopEdge + self.topHeight || (y < (TopEdge + ButtonHeight) && x < (EdgeX + _unableCount * ButtonWidth))) {
             NSLog(@"超出范围");
 #warning My code
             if (y > CGRectGetMaxY(self.bottomLabel.frame)) {
@@ -398,10 +414,10 @@
     NSLog(@"123 --- longPress");
     TouchView *touchView = (TouchView *)longPress.view;
     [self.scrollView bringSubviewToFront:touchView];
-    static CGPoint touchPoint;
-    static CGFloat offsetX;
-    static CGFloat offsetY;
-    static NSInteger staticIndex = 0;
+    static CGPoint touchPoint;// 手指在按钮上的位置
+    static CGFloat offsetX;// X 方向的偏移量
+    static CGFloat offsetY;// Y 方向的偏移量
+    static NSInteger staticIndex = 0;// 记录当前移动到了那个索引值
     if (longPress.state == UIGestureRecognizerStateBegan) {
         _isEditing = YES;
         [touchView inOrOutTouching:YES];
@@ -419,6 +435,7 @@
         _oldCenter = touchView.center;
         
         //这是为了计算手指在Label上的偏移位置
+        //locationInView:获取相对于原点的x,y
         touchPoint = [longPress locationInView:touchView];
         CGPoint centerPoint = CGPointMake(ButtonWidth/2, ButtonHeight/2);
         offsetX = touchPoint.x - centerPoint.x;
@@ -435,14 +452,21 @@
         CGFloat x = touchView.center.x;
         CGFloat y = touchView.center.y;
         //没有超出范围
-        if (!(x < EdgeX || x > ScreenWidth - EdgeX || y < TopEdge || y > TopEdge + self.topHeight || (y < (TopEdge + ButtonHeight) && x < (EdgeX + 2 * ButtonWidth)))) {
+        /*
+         x < EdgeX:超出左边界
+         x > ScreenWidth - EdgeX:超出右边界
+         y < TopEdge:超出顶边界
+         y > TopEdge + self.topHeight:超出底边界
+         (y < (TopEdge + ButtonHeight) && x < (EdgeX + _unableCount * ButtonWidth)):默认不可编辑按钮的区域，也是超出边界
+         */
+        if (!(x < EdgeX || x > ScreenWidth - EdgeX || y < TopEdge || y > TopEdge + self.topHeight || (y < (TopEdge + ButtonHeight) && x < (EdgeX + _unableCount * ButtonWidth)))) {
             //记录移动过程中label所处的index
             int index = ((int)((y - TopEdge)/ButtonHeight)) * ButtonCountOneRow + (int)(x - EdgeX)/ButtonWidth;
             
             //当index发生改变时, 插入占位的label, 重新布局UI
             if (staticIndex !=index) {
                 staticIndex = index;
-                if (staticIndex < self.topViewArr.count && staticIndex >= 0) {
+                if (staticIndex <= self.topViewArr.count && staticIndex >= 0) {
                     if ([self.topViewArr containsObject:self.clearView]) {
                         [self.topViewArr removeObject:self.clearView];
                     }
@@ -451,7 +475,8 @@
                         [self.scrollView addSubview:self.clearView];
                         [self.scrollView sendSubviewToBack:self.clearView];
                     }
-                    self.clearView.frame = CGRectMake(EdgeX + staticIndex%ButtonCountOneRow * ButtonWidth, TopEdge + staticIndex/ButtonCountOneRow*ButtonHeight, ButtonWidth, ButtonHeight);
+                    // 占位图随着index时时的更改位置
+//                    self.clearView.frame = CGRectMake(EdgeX + staticIndex%ButtonCountOneRow * ButtonWidth, TopEdge + staticIndex/ButtonCountOneRow*ButtonHeight, ButtonWidth, ButtonHeight);
                     [UIView animateWithDuration:0.5 animations:^{
                         [self reconfigTopView];
                     }];
@@ -464,13 +489,14 @@
         [touchView inOrOutTouching:NO];
         CGFloat x = touchView.center.x;
         CGFloat y = touchView.center.y;
-        if (x < EdgeX || x > ScreenWidth - EdgeX || y < TopEdge || y > TopEdge + self.topHeight || (y < (TopEdge + ButtonHeight) && x < (EdgeX + ButtonWidth))) {
+        if (x < EdgeX || x > ScreenWidth - EdgeX || y < TopEdge || y > TopEdge + self.topHeight || (y < (TopEdge + ButtonHeight) && x < (EdgeX + _unableCount * ButtonWidth))) {
             NSLog(@"长按手势结束: 超出范围");
 #warning My code
             if (y > CGRectGetMaxY(self.bottomLabel.frame)) {
                 if ([self.topViewArr containsObject:self.clearView]) {
+                    // 把原有的占位视图从数组中移除
                     [self.topViewArr removeObject:self.clearView];
-                    if (self.clearView.superview) {
+                    if (self.clearView.superview) {// 把原有的占位视图界面中移除
                         [self.clearView removeFromSuperview];
                     }
                 }
@@ -479,7 +505,7 @@
                 }
                 _isDragging = YES;
                 [self topTapAct:touchView.tap];
-                return;
+                return;//结束程序，不执行下面的代码
             } else {
                     [UIView animateWithDuration:0.5 animations:^{
                         touchView.center = _oldCenter;
@@ -498,12 +524,12 @@
         if ([self.topDataSource containsObject:self.placeHolderModel]) {
             [self.topDataSource removeObject:self.placeHolderModel];
         }
-        if (_moveIndex < self.topViewArr.count && _moveIndex >= 0) {
+        if (_moveIndex < self.topViewArr.count && _moveIndex >= 0) {// 插在中间位置
             [self.topViewArr insertObject:touchView atIndex:_moveIndex];
             if (_moveIndex < self.topDataSource.count && self.touchingModel) {
                 [self.topDataSource insertObject:self.touchingModel atIndex:_moveIndex];
             }
-        }else{
+        }else{// 插在末尾
             [self.topViewArr addObject:touchView];
             if (self.touchingModel) {
                 [self.topDataSource addObject:self.touchingModel];
@@ -561,6 +587,7 @@
 #pragma mark - 进入或者退出编辑状态
 -(void)inOrOutEditWithEditing:(BOOL)isEditing{
     if (isEditing) {
+        // 编辑按钮状态
         [self.editButton setBackgroundImage:[UIImage imageNamed:@"finsh"] forState:UIControlStateNormal];
         [self.editButton setBackgroundImage:[UIImage imageNamed:@"finsh-1"] forState:UIControlStateHighlighted];
         
@@ -575,7 +602,7 @@
         self.editAlertLabel.hidden = NO;
         for (int i = 0; i < self.topViewArr.count; ++i) {
             TouchView *touchView = self.topViewArr[i];
-            if (touchView.pan) {
+            if (touchView.pan) {// 拖拽手势可用
                 touchView.pan.enabled = YES;
                 touchView.closeImageView.hidden = NO;
             }
@@ -590,7 +617,7 @@
         self.editAlertLabel.hidden = YES;
         for (int i = 0; i < self.topViewArr.count; ++i) {
             TouchView *touchView = self.topViewArr[i];
-            if (touchView.pan) {
+            if (touchView.pan) {// 拖拽手势不可用
                 touchView.pan.enabled = NO;
                 touchView.closeImageView.hidden = YES;
             }
@@ -606,6 +633,7 @@
 
 #pragma mark - 点击关闭按钮
 - (IBAction)closeButtonAct:(id)sender {
+    // 如果传进来的默认选中还在上半部
     if (self.initialIndexModel && self.initialIndexModel.isTop) {
         if ([self.topDataSource containsObject:self.initialIndexModel]) {
             if (self.chooseIndexBlock) {

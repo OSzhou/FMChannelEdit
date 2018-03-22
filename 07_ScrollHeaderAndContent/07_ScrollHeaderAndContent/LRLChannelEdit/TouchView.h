@@ -12,8 +12,11 @@
 
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) UIImageView *closeImageView;
+// 拖拽
 @property (nonatomic, strong) UIPanGestureRecognizer *pan;
+// 点击
 @property (nonatomic, strong) UITapGestureRecognizer *tap;
+// 长按
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPress;
 
 -(void)inOrOutTouching:(BOOL)inOrOut;

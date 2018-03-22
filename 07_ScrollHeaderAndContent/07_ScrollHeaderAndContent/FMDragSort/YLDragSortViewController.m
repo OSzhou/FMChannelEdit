@@ -91,7 +91,7 @@
     } else
         return CGSizeZero;
 }
-
+// cell的点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!indexPath.section) {
         if (kTool.isEditing) {
@@ -164,7 +164,7 @@
         
         //设置截图视图位置
         _snapshotView.center = CGPointApplyAffineTransform(_snapshotView.center, CGAffineTransformMakeTranslation(tranX, tranY));
-        startPoint = [gestureRecognizer locationOfTouch:0 inView:_dragSortView];
+//        startPoint = [gestureRecognizer locationOfTouch:0 inView:_dragSortView];
         //计算截图视图和哪个cell相交
         for (UICollectionViewCell *cell in [_dragSortView visibleCells]) {
             if (![self.dragSortView indexPathForCell:cell].section) {
