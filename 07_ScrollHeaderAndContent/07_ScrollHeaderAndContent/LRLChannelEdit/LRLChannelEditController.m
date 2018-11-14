@@ -324,6 +324,7 @@
         if (!(x < EdgeX || x > ScreenWidth - EdgeX || y < TopEdge || y > TopEdge + self.topHeight  || (y < (TopEdge + ButtonHeight) && x < (EdgeX + _unableCount * ButtonWidth)))) {
             //记录移动过程中label所处的index
             int index = ((int)((y - TopEdge)/ButtonHeight)) * ButtonCountOneRow + (int)(x - EdgeX)/ButtonWidth;
+            if (index >= self.topViewArr.count) return;
             //当index发生改变时, 插入占位的label, 重新布局UI
             if (staticIndex !=index) {
                 staticIndex = index;
@@ -462,7 +463,7 @@
         if (!(x < EdgeX || x > ScreenWidth - EdgeX || y < TopEdge || y > TopEdge + self.topHeight || (y < (TopEdge + ButtonHeight) && x < (EdgeX + _unableCount * ButtonWidth)))) {
             //记录移动过程中label所处的index
             int index = ((int)((y - TopEdge)/ButtonHeight)) * ButtonCountOneRow + (int)(x - EdgeX)/ButtonWidth;
-            
+            if (index >= self.topViewArr.count) return;
             //当index发生改变时, 插入占位的label, 重新布局UI
             if (staticIndex !=index) {
                 staticIndex = index;

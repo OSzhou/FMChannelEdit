@@ -316,6 +316,7 @@
 				TargetAttributes = {
 					E527E63F1E5D25DF0069D382 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 6AS4N82Q9E;
 						ProvisioningStyle = Automatic;
 					};
 					E527E6581E5D25DF0069D382 = {
@@ -550,6 +551,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6AS4N82Q9E;
 				INFOPLIST_FILE = 07_ScrollHeaderAndContent/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "senyint.-7-ScrollHeaderAndContent";
@@ -561,6 +563,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6AS4N82Q9E;
 				INFOPLIST_FILE = 07_ScrollHeaderAndContent/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "senyint.-7-ScrollHeaderAndContent";
