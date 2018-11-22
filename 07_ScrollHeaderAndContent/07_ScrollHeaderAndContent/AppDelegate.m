@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "FMPhotoEditViewController.h"
 
 @interface AppDelegate ()
 @end
@@ -16,6 +17,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    /*self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    FMPhotoEditViewController *vc = [[FMPhotoEditViewController alloc] init];
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];*/
     return YES;
 }
 
