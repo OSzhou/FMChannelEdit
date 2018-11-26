@@ -1,21 +1,22 @@
 //
-//  FMPhotoEditViewController.m
+//  TUSelectPhotoEditorViewController.m
 //  07_ScrollHeaderAndContent
 //
-//  Created by Zhouheng on 2018/11/14.
+//  Created by Zhouheng on 2018/11/22.
 //  Copyright © 2018年 Windy. All rights reserved.
 //
-/// MARK: --- controller
-#import "FMPhotoEditViewController.h"
-#import "FMTestAddPhotoController.h"
-#import "FMPhotoEditView.h"
-#import "FMPhotoEditItem.h"
 
-@interface FMPhotoEditViewController () <FMPhotoEditViewDelegate>
+#import "TUSelectPhotoEditorViewController.h"
+
+#import "FMTestAddPhotoController.h"
+#import "TUSelectPhotoEditorView.h"
+#import "TUSelectPhotoEditorItem.h"
+
+@interface TUSelectPhotoEditorViewController () <TUSelectPhotoEditorViewDelegate>
 {   // 底线，超过执行删除
     CGFloat _limit;
 }
-@property (nonatomic, strong) FMPhotoEditView *photoEditView;
+@property (nonatomic, strong) TUSelectPhotoEditorView *photoEditView;
 @property (nonatomic, strong) UIView *bottomDeleteItemView;
 @property (nonatomic, strong) UIButton *deleteIcon;
 @property (nonatomic, strong) NSMutableArray *testArr;
@@ -23,7 +24,7 @@
 
 @end
 
-@implementation FMPhotoEditViewController
+@implementation TUSelectPhotoEditorViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,34 +34,35 @@
 }
 
 - (void)photoEditTest {
-    FMPhotoEditView *photoEditView = [[FMPhotoEditView alloc] initWithFrame:CGRectMake(5, SCREEN_HEIGHT * 0.25, SCREEN_WIDTH - 10, (SCREEN_WIDTH - 10) / 4 * 3)];
+    TUSelectPhotoEditorView *photoEditView = [[TUSelectPhotoEditorView alloc] initWithFrame:CGRectMake(5, SCREEN_HEIGHT * 0.25, SCREEN_WIDTH - 10, (SCREEN_WIDTH - 10) / 4 * 3)];
     photoEditView.delegate = self;
     photoEditView.backgroundColor = [UIColor cyanColor];
-//    NSArray *testArr = @[@"", @"", @"", @"", @"", @"", @"", @"", @""];
+    //    NSArray *testArr = @[@"", @"", @"", @"", @"", @"", @"", @"", @""];
     NSMutableArray *testArr = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", @"", nil];
     photoEditView.photosArr = testArr;
     _testArr = testArr;
-
+    
     [self.view addSubview:photoEditView];
     _photoEditView = photoEditView;
     [self.view addSubview:self.bottomDeleteItemView];
     [self.bottomDeleteItemView addSubview:self.deleteIcon];
     _limit = SCREEN_HEIGHT - _bottomDeleteItemView.height / 2;
+    [self.view bringSubviewToFront:self.photoEditView];
 }
 
-#pragma mark --- FMPhotoEditView Delegate
+#pragma mark --- TUSelectPhotoEditorView Delegate
 // 点击图片
-- (void)photoEditView:(FMPhotoEditView *)photoEditView item:(FMPhotoEditItem *)item itemAtIndex:(NSInteger)index {
+- (void)photoEditView:(TUSelectPhotoEditorView *)photoEditView item:(TUSelectPhotoEditorItem *)item itemAtIndex:(NSInteger)index {
     NSLog(@"click item index --- %ld", (long)index);
 }
 // 长按开始
-- (void)photoEditView:(FMPhotoEditView *)photoEditView longPressBeginWithItem:(FMPhotoEditItem *)item {
+- (void)photoEditView:(TUSelectPhotoEditorView *)photoEditView panBeginWithItem:(TUSelectPhotoEditorItem *)item {
     [self bottomDeleteItemViewShowOrHideWithFlag:YES];
 }
 // 长按移动
-- (void)photoEditView:(FMPhotoEditView *)photoEditView longPressStateChangedWithItem:(FMPhotoEditItem *)item {
+- (void)photoEditView:(TUSelectPhotoEditorView *)photoEditView panStateChangedWithItem:(TUSelectPhotoEditorItem *)item {
     CGRect rect = [item convertRect:item.bounds toView:self.view];
-//    NSLog(@" --- %f --- %f",rect.origin.y + rect.size.height, _limit);
+    //    NSLog(@" --- %f --- %f",rect.origin.y + rect.size.height, _limit);
     if (rect.origin.y + rect.size.height >= _limit && !_deleteIcon.selected) {
         NSLog(@"更换按钮状态逻辑 button selected --- YES");
         _deleteIcon.selected = YES;
@@ -72,12 +74,12 @@
 }
 
 // 长按结束
-- (BOOL)photoEditView:(FMPhotoEditView *)photoEditView longPressEndWithItem:(FMPhotoEditItem *)item atIndex:(NSInteger)index{
+- (BOOL)photoEditView:(TUSelectPhotoEditorView *)photoEditView panEndWithItem:(TUSelectPhotoEditorItem *)item atIndex:(NSInteger)index{
     
     [self bottomDeleteItemViewShowOrHideWithFlag:NO];
     
     CGRect rect = [item convertRect:item.bounds toView:self.view];
-//    NSLog(@" --- %f --- %f",rect.origin.y + rect.size.height, _limit);
+    //    NSLog(@" --- %f --- %f",rect.origin.y + rect.size.height, _limit);
     if (rect.origin.y + rect.size.height >= _limit) {
         NSLog(@"执行删除逻辑");
         [_photoEditView deleteWith:item];
@@ -88,38 +90,38 @@
     return NO;
 }
 // 长按取消或失败
-- (void)photoEditView:(FMPhotoEditView *)photoEditView longPressCancelOrFailWithItem:(FMPhotoEditItem *)item {
+- (void)photoEditView:(TUSelectPhotoEditorView *)photoEditView panCancelOrFailWithItem:(TUSelectPhotoEditorItem *)item {
     [self bottomDeleteItemViewShowOrHideWithFlag:NO];
 }
 // 长按
 /*
-- (void)photoEditView:(FMPhotoEditView *)photoEditView item:(FMPhotoEditItem *)item longPressGesture:(UILongPressGestureRecognizer *)gesture {
-    switch (gesture.state) {
-        case UIGestureRecognizerStateBegan: {
-            
-            }
-            break;
-        case UIGestureRecognizerStateChanged: {
-            NSLog(@"long press Changed --- ");
-            
-        }
-            break;
-        case UIGestureRecognizerStateEnded: {
-            NSLog(@"long press Ended --- ");
-            
-        }
-            break;
-        case UIGestureRecognizerStateCancelled:
-        case UIGestureRecognizerStateFailed:{
-            NSLog(@"long press cancelled or failed --- ");
-            
-        }
-            break;
-            
-        default:
-            break;
-    }
-}*/
+ - (void)photoEditView:(TUSelectPhotoEditorView *)photoEditView item:(TUSelectPhotoEditorItem *)item panGesture:(UIpanGestureRecognizer *)gesture {
+ switch (gesture.state) {
+ case UIGestureRecognizerStateBegan: {
+ 
+ }
+ break;
+ case UIGestureRecognizerStateChanged: {
+ NSLog(@"long press Changed --- ");
+ 
+ }
+ break;
+ case UIGestureRecognizerStateEnded: {
+ NSLog(@"long press Ended --- ");
+ 
+ }
+ break;
+ case UIGestureRecognizerStateCancelled:
+ case UIGestureRecognizerStateFailed:{
+ NSLog(@"long press cancelled or failed --- ");
+ 
+ }
+ break;
+ 
+ default:
+ break;
+ }
+ }*/
 
 - (void)bottomDeleteItemViewShowOrHideWithFlag:(BOOL)flag {
     CGFloat y;
@@ -134,7 +136,7 @@
 }
 
 // 点击加号按钮
-- (void)photoEditView:(FMPhotoEditView *)photoEditView addButton:(UIButton *)addButton {
+- (void)photoEditView:(TUSelectPhotoEditorView *)photoEditView addButton:(UIButton *)addButton {
     NSLog(@"add button click ---");
     FMTestAddPhotoController *tvc = [[FMTestAddPhotoController alloc] init];
     __weak typeof(self) weakSelf = self;
@@ -163,7 +165,7 @@
 - (UIView *)bottomDeleteItemView {
     if (!_bottomDeleteItemView) {
         _bottomDeleteItemView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 60)];
-        _bottomDeleteItemView.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:.5];
+        _bottomDeleteItemView.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:1.0];
     }
     return _bottomDeleteItemView;
 }

@@ -20,7 +20,7 @@
 /// 图片长按移动
 - (void)photoEditView:(FMPhotoEditView *)photoEditView longPressStateChangedWithItem:(FMPhotoEditItem *)item;
 /// 图片长按结束
-- (void)photoEditView:(FMPhotoEditView *)photoEditView longPressEndWithItem:(FMPhotoEditItem *)item atIndex:(NSInteger)index;
+- (BOOL)photoEditView:(FMPhotoEditView *)photoEditView longPressEndWithItem:(FMPhotoEditItem *)item atIndex:(NSInteger)index;
 /// 图片长按取消或失败
 - (void)photoEditView:(FMPhotoEditView *)photoEditView longPressCancelOrFailWithItem:(FMPhotoEditItem *)item;
 

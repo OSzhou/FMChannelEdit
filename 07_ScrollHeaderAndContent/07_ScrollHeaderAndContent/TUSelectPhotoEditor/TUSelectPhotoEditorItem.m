@@ -1,20 +1,20 @@
-
 //
-//  FMPhotoEditItem.m
+//  TUSelectPhotoEditorItem.m
 //  07_ScrollHeaderAndContent
 //
-//  Created by Zhouheng on 2018/11/14.
+//  Created by Zhouheng on 2018/11/22.
 //  Copyright © 2018年 Windy. All rights reserved.
 //
 
-#import "FMPhotoEditItem.h"
-#import "Masonry.h"
+#import "TUSelectPhotoEditorItem.h"
 
-@interface FMPhotoEditItem ()
+@interface TUSelectPhotoEditorItem ()
+
+
 
 @end
 static const CGFloat margin = 5.f;
-@implementation FMPhotoEditItem
+@implementation TUSelectPhotoEditorItem
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -28,12 +28,10 @@ static const CGFloat margin = 5.f;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     [self addGestureRecognizer:tap];
     
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGesture:)];
-    [self addGestureRecognizer:longPress];
-    /*
+   
      UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)];
      [self addGestureRecognizer:pan];
-     */
+    
     [self addSubview:self.shadowView];
     [self addSubview: self.contentImageView];
     [self addSubview:self.maskImageView];
@@ -42,11 +40,9 @@ static const CGFloat margin = 5.f;
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    [UIView animateWithDuration:.25 animations:^{
-        _contentImageView.frame = CGRectMake(margin, margin, self.width - 2 * margin, self.height - 2 * margin);
-        _shadowView.frame = self.bounds;
-        _maskImageView.frame = self.bounds;
-    }];
+    _contentImageView.frame = CGRectMake(margin, margin, self.width - 2 * margin, self.height - 2 * margin);
+    _shadowView.frame = self.bounds;
+    _maskImageView.frame = self.bounds;
     
 }
 
@@ -56,26 +52,20 @@ static const CGFloat margin = 5.f;
     }
 }
 
-- (void)longPressGesture:(UILongPressGestureRecognizer *)gesture {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(photoItem:longPressGesture:)]) {
-        [self.delegate photoItem:self longPressGesture:gesture];
-    }
-}
-
-/*
  - (void)panGesture:(UIPanGestureRecognizer *)gesture {
- if (self.delegate && [self.delegate respondsToSelector:@selector(photoItem:panGesture:)]) {
- [self.delegate photoItem:self panGesture:gesture];
+     if (self.delegate && [self.delegate respondsToSelector:@selector(photoItem:panGesture:)]) {
+     [self.delegate photoItem:self panGesture:gesture];
+     }
  }
- }
- */
+
+#pragma mark --- lazy loading
 
 - (UIImageView *)maskImageView{
     
     if (!_maskImageView) {
         
         UIImageView *imageView = [UIImageView new];
-        //        imageView.layer.cornerRadius = 4.5;
+//        imageView.layer.cornerRadius = 4.5;
         imageView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.7];
         imageView.hidden = YES;
         _maskImageView = imageView;
@@ -112,7 +102,7 @@ static const CGFloat margin = 5.f;
         _contentImageView.backgroundColor = [UIColor colorWithRed:(arc4random() % 255) / 255.0 green:(arc4random() % 255) / 255.0 blue:(arc4random() % 255) / 255.0 alpha:1.0];
         _contentImageView.layer.cornerRadius = 4.5;
         _contentImageView.contentMode = UIViewContentModeScaleAspectFill;
-//        _contentImageView.image = [UIImage imageNamed:@"finsh-1"];
+        //        _contentImageView.image = [UIImage imageNamed:@"finsh-1"];
         _contentImageView.clipsToBounds = YES;
     }
     return _contentImageView;

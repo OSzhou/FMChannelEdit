@@ -16,8 +16,10 @@
 }
 @property (nonatomic, strong) NSMutableArray *itemsArr;
 @property (nonatomic, assign) NSInteger startIndex;
+@property (nonatomic, assign) NSInteger moveToIndex;
 @property (nonatomic, strong) UIButton *addPhotoButton;
 @property (nonatomic, strong) NSMutableArray *cacheItemFrameArr;
+@property (nonatomic, strong) FMPhotoEditItem *placeholderItem;
 
 @end
 // 一行放 **小图** 的个数
@@ -60,6 +62,9 @@ static const NSInteger rowCount = 4;
         FMPhotoEditItem *item = _itemsArr[i];
         item.isBig = i ? NO : YES;
         item.hidden = YES;
+        item.shadowView.hidden = YES;
+        item.maskImageView.hidden = YES;
+        item.contentImageView.hidden = item.isPlaceHolder ? YES : NO;
         
         if (count == 0) continue;
         
@@ -171,7 +176,7 @@ static const NSInteger rowCount = 4;
     
     static CGFloat offsetX;// X 方向的偏移量
     static CGFloat offsetY;// Y 方向的偏移量
-    static NSInteger moveToIndex;
+    static NSInteger markIndex;
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan: {
             [self bringSubviewToFront:photoItem];
@@ -181,7 +186,10 @@ static const NSInteger rowCount = 4;
             }
             
             _startIndex = [_itemsArr indexOfObject:photoItem];
-            moveToIndex = _startIndex;
+            _moveToIndex = _startIndex;
+            
+            [self updateItemShadowAndMaskViewStatusWith:YES];
+            [_itemsArr removeObject:photoItem];
             CGPoint touchPoint = [gesture locationInView:photoItem];
             // 获取photoItem 在自己坐标下的中心点
             CGPoint centerPoint = CGPointMake(photoItem.width / 2, photoItem.height / 2);
@@ -204,26 +212,41 @@ static const NSInteger rowCount = 4;
             //x > 0 && y > 0 && x < self.width && y < self.height
             if (CGRectContainsPoint(self.bounds, photoItem.center)) {
                 
-//                NSLog(@"x --- %f, y --- %f", x, y);
+                // 九宫格对应的index
                 NSInteger tempIndex = (NSInteger)(y / (_smallWidth)) * rowCount + (NSInteger)(x / (_smallWidth));
-//                NSLog(@"temp index --- %ld", (long)tempIndex);
-
+                // 对应后的index
+                NSInteger realIndex = 0;
                 if (tempIndex <= 5) {
                     if (tempIndex == 2 || tempIndex == 3) {
-                        moveToIndex = tempIndex - 1;
+                        realIndex = tempIndex - 1;
                     } else {
-                        moveToIndex = 0;
+                        realIndex = 0;
                     }
                 } else {
-                    moveToIndex = tempIndex - 3;
+                    realIndex = tempIndex - 3;
                 }
-//                NSLog(@"true index --- %ld", (long)index);
-                if (tempIndex != moveToIndex) {
-                    tempIndex = moveToIndex;
-//                    NSLog(@" --- 执行交换逻辑！！！");
+                
+                if (realIndex != markIndex) {
+                    markIndex = realIndex;
+                    
+                    if (realIndex < _photosArr.count && realIndex >= 0) {
+                        _moveToIndex = realIndex;
+                        if ([_itemsArr containsObject:self.placeholderItem]) {
+                            [_itemsArr removeObject:_placeholderItem];
+                        }
+                        [_itemsArr insertObject:self.placeholderItem atIndex:_moveToIndex];
+                        if (!_placeholderItem.superview) {
+                            [self addSubview:_placeholderItem];
+                            [self sendSubviewToBack:_placeholderItem];
+                        }
+                        
+                        [UIView animateWithDuration:.3 animations:^{
+                            [self refreshItemStatusAndLayout];
+                        }];
+                        [self updateItemShadowAndMaskViewStatusWith:YES];
+                    }
+                    
                 }
-            } else {
-                moveToIndex = _startIndex;
             }
             
             if (self.delegate && [self.delegate respondsToSelector:@selector(photoEditView:longPressStateChangedWithItem:)]) {
@@ -232,18 +255,18 @@ static const NSInteger rowCount = 4;
         }
             break;
         case UIGestureRecognizerStateEnded: {
-            // 注意代码顺序，代理要放前面
-            if (self.delegate && [self.delegate respondsToSelector:@selector(photoEditView:longPressEndWithItem:atIndex:)]) {
-                [self.delegate photoEditView:self longPressEndWithItem:photoItem atIndex:_startIndex];
-            }
+            
+            [self moveItem:photoItem toIndex:_moveToIndex];
             // 更新视图
-            NSLog(@"start --- %ld, moveTo --- %ld", (long)_startIndex, (long)moveToIndex);
-            [self exchangeItemAtIndex:_startIndex withItemAtIndex:moveToIndex];
+//            NSLog(@"start --- %ld, moveTo --- %ld", (long)_startIndex, (long)_moveToIndex);
+//            [self exchangeItemAtIndex:_startIndex withItemAtIndex:_moveToIndex];
             
         }
             break;
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateFailed:{
+            // 状态回置
+            [self moveItem:photoItem toIndex:_moveToIndex];
             if (self.delegate && [self.delegate respondsToSelector:@selector(photoEditView:longPressCancelOrFailWithItem:)]) {
                 [self.delegate photoEditView:self longPressCancelOrFailWithItem:photoItem];
             }
@@ -252,6 +275,74 @@ static const NSInteger rowCount = 4;
             
         default:
             break;
+    }
+}
+
+- (void)moveItem:(FMPhotoEditItem *)photoItem toIndex:(NSInteger)moveToIndex {
+    photoItem.alpha = 1;
+    // 更新视图
+    if ([_itemsArr containsObject:_placeholderItem]) {
+        [_itemsArr removeObject:_placeholderItem];
+        [_placeholderItem removeFromSuperview];
+    }
+    // 判断是否执行了删除逻辑
+    BOOL isDeleted = [self.delegate photoEditView:self longPressEndWithItem:photoItem atIndex:_startIndex];
+    
+    if (isDeleted) {
+        NSLog(@" --- 删除");
+    } else {
+        [_itemsArr insertObject:photoItem atIndex:moveToIndex];
+        NSLog(@"111 --- %ld 222 --- %ld", _startIndex, moveToIndex);
+        if (moveToIndex < _photosArr.count && moveToIndex >= 0) {
+            if (_startIndex != moveToIndex) {
+                NSString * temp = _photosArr[_startIndex];
+                [_photosArr removeObjectAtIndex:_startIndex];
+                [_photosArr insertObject:temp atIndex:moveToIndex];
+            };
+        }
+        [UIView animateWithDuration:.3 animations:^{
+            [self refreshItemStatusAndLayout];
+        }];
+    }
+    [self updateItemShadowAndMaskViewStatusWith:NO];
+}
+
+// isMoving 是否正在移动 YES 是 NO 移动结束
+- (void)updateItemShadowAndMaskViewStatusWith:(BOOL)isMoving {
+    
+    NSInteger count = _photosArr.count;
+    count = count == 9 ? count : count + 1;
+    
+    for (int i = 0; i < count; i ++) {
+        FMPhotoEditItem *item = _itemsArr[i];
+        if (item.isPlaceHolder) continue;
+        if (isMoving) {
+            
+            if (i == _moveToIndex) {
+                item.shadowView.hidden = !isMoving;
+            } else {
+                item.maskImageView.hidden = !isMoving;
+            }
+            
+            if (count != 9 && i == _photosArr.count) {
+                item.hidden = NO;
+                item.frame = _addPhotoButton.frame;
+                item.contentImageView.hidden = YES;
+                [self bringSubviewToFront:item];
+                NSLog(@"add button up --- %@", NSStringFromCGRect(item.frame));
+            }
+            
+        } else {
+            
+            item.shadowView.hidden = !isMoving;
+            item.maskImageView.hidden = !isMoving;
+            
+            if (count != 9 && i == _photosArr.count) {
+                item.hidden = !isMoving;
+            }
+            
+        }
+        
     }
 }
 
@@ -310,6 +401,17 @@ static const NSInteger rowCount = 4;
 }
 
 /// MARK: lazy loading
+
+- (FMPhotoEditItem *)placeholderItem {
+    if (!_placeholderItem) {
+        _placeholderItem = [[FMPhotoEditItem alloc] init];
+        _placeholderItem.backgroundColor = [UIColor clearColor];//[UIColor blueColor];
+        _placeholderItem.contentImageView.hidden = YES;
+        _placeholderItem.isPlaceHolder = YES;
+    }
+    return _placeholderItem;
+}
+
 - (NSMutableArray *)cacheItemFrameArr {
     if (!_cacheItemFrameArr) {
         _cacheItemFrameArr = [NSMutableArray arrayWithCapacity:9];
@@ -338,7 +440,7 @@ static const NSInteger rowCount = 4;
             if (i == 0) {
                 item.isBig = YES;
             }
-            item.backgroundColor = [UIColor purpleColor];
+            item.backgroundColor = [UIColor clearColor];//[UIColor purpleColor];
             item.delegate = self;
             item.hidden = YES;
             [_itemsArr addObject:item];
