@@ -60,6 +60,7 @@ static const NSInteger rowCount = 4;
     for (int i = 0; i < _itemsArr.count; i ++) {
         // 状态回置
         TUSelectPhotoEditorItem *item = _itemsArr[i];
+        item.isBig = i ? NO : YES;
         item.hidden = YES;
         item.shadowView.hidden = YES;
         item.maskImageView.hidden = YES;
@@ -109,9 +110,23 @@ static const NSInteger rowCount = 4;
     }
 }
 
+// 根据手指位置 -> 变小图
+- (void)firstPhotoToSmallSize:(TUSelectPhotoEditorItem *)item fingerPoint:(CGPoint)point {
+    
+    [UIView animateWithDuration:.25 animations:^{
+        
+        item.size = CGSizeMake(_smallWidth, _smallWidth);
+        item.center = point;
+        
+    }];
+    
+}
+
 - (void)deleteWith:(TUSelectPhotoEditorItem *)item {
     [_itemsArr removeObject:item];
     [_itemsArr addObject:item];
+    TUSelectPhotoEditorItem* firstItem = _itemsArr.firstObject;
+    firstItem.isBig = YES;
 }
 
 #pragma mark --- TUSelectPhotoEditorItem Delegate
@@ -131,8 +146,12 @@ static const NSInteger rowCount = 4;
      switch (gesture.state) {
          case UIGestureRecognizerStateBegan: {
              [self bringSubviewToFront:photoItem];
-             
-             photoItem.alpha = .5;
+             NSLog(@"pan gesture --- begin");
+             if (photoItem.isBig) {
+                 CGPoint fingerLoc = [gesture locationInView:self];
+                 [self firstPhotoToSmallSize:photoItem fingerPoint:fingerLoc];
+             }
+//             photoItem.alpha = .5;
              _startIndex = [_itemsArr indexOfObject:photoItem];
              
              _moveToIndex = _startIndex;
@@ -226,7 +245,7 @@ static const NSInteger rowCount = 4;
  }
 
 - (void)moveItem:(TUSelectPhotoEditorItem *)photoItem toIndex:(NSInteger)moveToIndex {
-    photoItem.alpha = 1;
+//    photoItem.alpha = 1;
     // 更新视图
     if ([_itemsArr containsObject:_placeholderItem]) {
         [_itemsArr removeObject:_placeholderItem];
@@ -271,7 +290,7 @@ static const NSInteger rowCount = 4;
                 item.maskImageView.hidden = !isMoving;
             }
             
-            if (count != 9 && i == _photosArr.count) {
+            if (_photosArr.count != 9 && i == _photosArr.count) {
                 item.hidden = NO;
                 item.frame = _addPhotoButton.frame;
                 item.contentImageView.hidden = YES;
@@ -329,7 +348,7 @@ static const NSInteger rowCount = 4;
 - (TUSelectPhotoEditorItem *)placeholderItem {
     if (!_placeholderItem) {
         _placeholderItem = [[TUSelectPhotoEditorItem alloc] init];
-        _placeholderItem.backgroundColor = [UIColor blueColor];
+        _placeholderItem.backgroundColor = [UIColor clearColor];//[UIColor blueColor];
         _placeholderItem.contentImageView.hidden = YES;
         _placeholderItem.isPlaceHolder = YES;
     }
@@ -362,6 +381,9 @@ static const NSInteger rowCount = 4;
         for (int i = 0; i < 9; i ++) {
             
             TUSelectPhotoEditorItem *item = [[TUSelectPhotoEditorItem alloc] initWithFrame:CGRectZero];
+            if (i == 0) {
+                item.isBig = YES;
+            }
             item.backgroundColor = [UIColor clearColor];
             item.delegate = self;
             item.hidden = YES;

@@ -39,10 +39,11 @@ static const CGFloat margin = 5.f;
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
-    _contentImageView.frame = CGRectMake(margin, margin, self.width - 2 * margin, self.height - 2 * margin);
-    _shadowView.frame = self.bounds;
-    _maskImageView.frame = self.bounds;
+    [UIView animateWithDuration:.25 animations:^{
+        _contentImageView.frame = CGRectMake(margin, margin, self.width - 2 * margin, self.height - 2 * margin);
+        _shadowView.frame = self.bounds;
+        _maskImageView.frame = self.bounds;
+    }];
     
 }
 

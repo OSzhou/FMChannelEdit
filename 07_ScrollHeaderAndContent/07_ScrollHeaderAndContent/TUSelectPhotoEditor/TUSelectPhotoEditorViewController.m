@@ -44,10 +44,11 @@
     
     [self.view addSubview:photoEditView];
     _photoEditView = photoEditView;
-    [self.view addSubview:self.bottomDeleteItemView];
     [self.bottomDeleteItemView addSubview:self.deleteIcon];
     _limit = SCREEN_HEIGHT - _bottomDeleteItemView.height / 2;
     [self.view bringSubviewToFront:self.photoEditView];
+    [self.view addSubview:self.bottomDeleteItemView];
+ 
 }
 
 #pragma mark --- TUSelectPhotoEditorView Delegate

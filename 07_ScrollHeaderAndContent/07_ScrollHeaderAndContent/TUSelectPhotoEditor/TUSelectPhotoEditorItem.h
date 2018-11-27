@@ -23,7 +23,7 @@
 @interface TUSelectPhotoEditorItem : UIView
 
 // 是不是第一张的大图
-//@property (nonatomic, assign) BOOL isBig;
+@property (nonatomic, assign) BOOL isBig;
 @property (nonatomic, assign) BOOL isPlaceHolder;
 @property (nonatomic, strong) UIImageView *contentImageView;
 // 遮罩

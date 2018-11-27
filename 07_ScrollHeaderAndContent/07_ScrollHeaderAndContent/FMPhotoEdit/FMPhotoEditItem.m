@@ -29,6 +29,7 @@ static const CGFloat margin = 5.f;
     [self addGestureRecognizer:tap];
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGesture:)];
+    
     [self addGestureRecognizer:longPress];
     /*
      UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)];

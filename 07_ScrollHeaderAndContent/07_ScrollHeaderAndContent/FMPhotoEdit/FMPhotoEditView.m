@@ -324,7 +324,7 @@ static const NSInteger rowCount = 4;
                 item.maskImageView.hidden = !isMoving;
             }
             
-            if (count != 9 && i == _photosArr.count) {
+            if (_photosArr.count != 9 && i == _photosArr.count) {
                 item.hidden = NO;
                 item.frame = _addPhotoButton.frame;
                 item.contentImageView.hidden = YES;
