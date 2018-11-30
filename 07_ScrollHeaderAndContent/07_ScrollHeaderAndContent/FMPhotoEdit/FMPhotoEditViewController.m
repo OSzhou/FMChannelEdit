@@ -80,9 +80,9 @@
 //    NSLog(@" --- %f --- %f",rect.origin.y + rect.size.height, _limit);
     if (rect.origin.y + rect.size.height >= _limit) {
         NSLog(@"执行删除逻辑");
-        [_photoEditView deleteWith:item];
+        
         [_testArr removeObjectAtIndex:index];
-        _photoEditView.photosArr = _testArr;
+        
         return YES;
     }
     return NO;

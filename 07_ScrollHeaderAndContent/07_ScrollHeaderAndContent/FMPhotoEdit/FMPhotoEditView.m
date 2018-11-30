@@ -150,10 +150,7 @@ static const NSInteger rowCount = 4;
 }
 
 - (void)deleteWith:(FMPhotoEditItem *)item {
-    [_itemsArr removeObject:item];
-    [_itemsArr addObject:item];
-    FMPhotoEditItem* firstItem = _itemsArr.firstObject;
-    firstItem.isBig = YES;
+    
 }
 
 #pragma mark --- FMPhotoEditItem Delegate
@@ -240,7 +237,7 @@ static const NSInteger rowCount = 4;
                             [self sendSubviewToBack:_placeholderItem];
                         }
                         
-                        [UIView animateWithDuration:.3 animations:^{
+                        [UIView animateWithDuration:.25 animations:^{
                             [self refreshItemStatusAndLayout];
                         }];
                         [self updateItemShadowAndMaskViewStatusWith:YES];
@@ -290,6 +287,9 @@ static const NSInteger rowCount = 4;
     
     if (isDeleted) {
         NSLog(@" --- 删除");
+        [_itemsArr removeObject:photoItem];
+        [_itemsArr addObject:photoItem];
+        
     } else {
         [_itemsArr insertObject:photoItem atIndex:moveToIndex];
         NSLog(@"111 --- %ld 222 --- %ld", _startIndex, moveToIndex);
@@ -300,10 +300,11 @@ static const NSInteger rowCount = 4;
                 [_photosArr insertObject:temp atIndex:moveToIndex];
             };
         }
-        [UIView animateWithDuration:.3 animations:^{
-            [self refreshItemStatusAndLayout];
-        }];
+        
     }
+    [UIView animateWithDuration:.25 animations:^{
+        [self refreshItemStatusAndLayout];
+    }];
     [self updateItemShadowAndMaskViewStatusWith:NO];
 }
 

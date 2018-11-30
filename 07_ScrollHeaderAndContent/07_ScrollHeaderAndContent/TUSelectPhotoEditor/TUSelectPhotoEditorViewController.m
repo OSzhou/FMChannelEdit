@@ -11,6 +11,7 @@
 #import "FMTestAddPhotoController.h"
 #import "TUSelectPhotoEditorView.h"
 #import "TUSelectPhotoEditorItem.h"
+#import "ControlTestView.h"
 
 @interface TUSelectPhotoEditorViewController () <TUSelectPhotoEditorViewDelegate>
 {   // 底线，超过执行删除
@@ -31,6 +32,13 @@
     self.view.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.dismissBtn];
     [self photoEditTest];
+    
+    [self controlViewTest];
+}
+
+- (void)controlViewTest {
+    ControlTestView *v = [[ControlTestView alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
+    [self.view addSubview:v];
 }
 
 - (void)photoEditTest {
@@ -83,9 +91,9 @@
     //    NSLog(@" --- %f --- %f",rect.origin.y + rect.size.height, _limit);
     if (rect.origin.y + rect.size.height >= _limit) {
         NSLog(@"执行删除逻辑");
-        [_photoEditView deleteWith:item];
+        
         [_testArr removeObjectAtIndex:index];
-        _photoEditView.photosArr = _testArr;
+
         return YES;
     }
     return NO;
@@ -163,6 +171,7 @@
     }
     return _dismissBtn;
 }
+
 - (UIView *)bottomDeleteItemView {
     if (!_bottomDeleteItemView) {
         _bottomDeleteItemView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 60)];

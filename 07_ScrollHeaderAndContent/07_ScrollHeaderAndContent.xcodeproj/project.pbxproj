@@ -11,6 +11,8 @@
 		9764A37E21A6BAD50019E321 /* TUSelectPhotoEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9764A37D21A6BAD50019E321 /* TUSelectPhotoEditorViewController.m */; };
 		9764A38121A6BAE00019E321 /* TUSelectPhotoEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9764A38021A6BAE00019E321 /* TUSelectPhotoEditorView.m */; };
 		9764A38421A6BB010019E321 /* TUSelectPhotoEditorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9764A38321A6BB010019E321 /* TUSelectPhotoEditorItem.m */; };
+		9764A39A21B00A250019E321 /* ControlTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9764A39921B00A250019E321 /* ControlTestView.m */; };
+		9764A39D21B00A4E0019E321 /* TouchTestControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9764A39C21B00A4E0019E321 /* TouchTestControl.m */; };
 		97805282219C1DAE0008E493 /* FMPhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97805281219C1DAE0008E493 /* FMPhotoEditViewController.m */; };
 		97805285219C1DF70008E493 /* FMPhotoEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97805284219C1DF70008E493 /* FMPhotoEditView.m */; };
 		97805288219C20480008E493 /* FMPhotoEditItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 97805287219C20480008E493 /* FMPhotoEditItem.m */; };
@@ -76,6 +78,10 @@
 		9764A38021A6BAE00019E321 /* TUSelectPhotoEditorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TUSelectPhotoEditorView.m; sourceTree = "<group>"; };
 		9764A38221A6BB010019E321 /* TUSelectPhotoEditorItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TUSelectPhotoEditorItem.h; sourceTree = "<group>"; };
 		9764A38321A6BB010019E321 /* TUSelectPhotoEditorItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TUSelectPhotoEditorItem.m; sourceTree = "<group>"; };
+		9764A39821B00A250019E321 /* ControlTestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ControlTestView.h; sourceTree = "<group>"; };
+		9764A39921B00A250019E321 /* ControlTestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ControlTestView.m; sourceTree = "<group>"; };
+		9764A39B21B00A4E0019E321 /* TouchTestControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchTestControl.h; sourceTree = "<group>"; };
+		9764A39C21B00A4E0019E321 /* TouchTestControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchTestControl.m; sourceTree = "<group>"; };
 		97805280219C1DAE0008E493 /* FMPhotoEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMPhotoEditViewController.h; sourceTree = "<group>"; };
 		97805281219C1DAE0008E493 /* FMPhotoEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMPhotoEditViewController.m; sourceTree = "<group>"; };
 		97805283219C1DF70008E493 /* FMPhotoEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMPhotoEditView.h; sourceTree = "<group>"; };
@@ -190,6 +196,10 @@
 				9764A38021A6BAE00019E321 /* TUSelectPhotoEditorView.m */,
 				9764A38221A6BB010019E321 /* TUSelectPhotoEditorItem.h */,
 				9764A38321A6BB010019E321 /* TUSelectPhotoEditorItem.m */,
+				9764A39821B00A250019E321 /* ControlTestView.h */,
+				9764A39921B00A250019E321 /* ControlTestView.m */,
+				9764A39B21B00A4E0019E321 /* TouchTestControl.h */,
+				9764A39C21B00A4E0019E321 /* TouchTestControl.m */,
 			);
 			path = TUSelectPhotoEditor;
 			sourceTree = "<group>";
@@ -514,6 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				978052AD219EC30D0008E493 /* MASViewConstraint.m in Sources */,
+				9764A39D21B00A4E0019E321 /* TouchTestControl.m in Sources */,
 				E5EAA5861E83CF6300E870AF /* TouchView.m in Sources */,
 				978052A7219EC30D0008E493 /* MASCompositeConstraint.m in Sources */,
 				978052AA219EC30D0008E493 /* NSArray+MASAdditions.m in Sources */,
@@ -529,6 +540,7 @@
 				E527E6481E5D25DF0069D382 /* AppDelegate.m in Sources */,
 				E527E67F1E5D2CFC0069D382 /* FMTitleLabel.m in Sources */,
 				978052AC219EC30D0008E493 /* MASConstraint.m in Sources */,
+				9764A39A21B00A250019E321 /* ControlTestView.m in Sources */,
 				9764A37E21A6BAD50019E321 /* TUSelectPhotoEditorViewController.m in Sources */,
 				E5EAA5911E83D53200E870AF /* YLDragSortTool.m in Sources */,
 				97805285219C1DF70008E493 /* FMPhotoEditView.m in Sources */,

@@ -33,5 +33,4 @@
 @property (nonatomic, strong) NSMutableArray *photosArr;
 @property (nonatomic, weak) id <TUSelectPhotoEditorViewDelegate> delegate;
 
-- (void)deleteWith:(TUSelectPhotoEditorItem *)item;
 @end

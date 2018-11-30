@@ -33,6 +33,4 @@
 @property (nonatomic, strong) NSMutableArray *photosArr;
 @property (nonatomic, weak) id <FMPhotoEditViewDelegate> delegate;
 
-- (void)deleteWith:(FMPhotoEditItem *)item;
-
 @end
