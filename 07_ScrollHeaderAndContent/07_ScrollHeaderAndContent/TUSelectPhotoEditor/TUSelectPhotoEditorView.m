@@ -287,6 +287,7 @@ static const NSInteger rowCount = 4;
                 item.shadowView.hidden = !isMoving;
             } else {
                 item.maskImageView.hidden = !isMoving;
+                item.userInteractionEnabled = NO;
             }
             
             if (_photosArr.count != 9 && i == _photosArr.count) {
@@ -295,13 +296,15 @@ static const NSInteger rowCount = 4;
                 item.contentImageView.hidden = YES;
                 [self bringSubviewToFront:item];
                 NSLog(@"add button up --- %@", NSStringFromCGRect(item.frame));
+                _addPhotoButton.enabled = NO;
             }
             
         } else {
             
             item.shadowView.hidden = !isMoving;
             item.maskImageView.hidden = !isMoving;
-            
+            item.userInteractionEnabled = YES;
+            _addPhotoButton.enabled = YES;
             if (count != 9 && i == _photosArr.count) {
                 item.hidden = !isMoving;
             }
