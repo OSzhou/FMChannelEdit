@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UIButton *addPhotoButton;
 @property (nonatomic, strong) NSMutableArray *cacheItemFrameArr;
 @property (nonatomic, strong) TUSelectPhotoEditorItem *placeholderItem;
+@property (nonatomic, assign) BOOL hasMovingItem;
 
 @end
 // 一行放 **小图** 的个数
@@ -123,6 +124,11 @@ static const NSInteger rowCount = 4;
 }
 
 #pragma mark --- TUSelectPhotoEditorItem Delegate
+
+- (BOOL)photoItem:(TUSelectPhotoEditorItem *)photoItem panGestureShouldBegin:(UIPanGestureRecognizer *)gesture {
+    return !_hasMovingItem;
+}
+
 - (void)photoItem:(TUSelectPhotoEditorItem *)photoItem tapGesture:(UITapGestureRecognizer *)gesture {
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(photoEditView:item:itemAtIndex:)]) {
@@ -133,7 +139,7 @@ static const NSInteger rowCount = 4;
 }
 
  - (void)photoItem:(TUSelectPhotoEditorItem *)photoItem panGesture:(UIPanGestureRecognizer *)gesture {
- 
+     _hasMovingItem = YES;
      static NSInteger markIndex;
      static CGPoint startCenter;
      switch (gesture.state) {
@@ -213,7 +219,7 @@ static const NSInteger rowCount = 4;
          }
              break;
          case UIGestureRecognizerStateEnded: {
-             
+             _hasMovingItem = NO;
              [self moveItem:photoItem toIndex:_moveToIndex];
              
               // 直接调换两张的逻辑

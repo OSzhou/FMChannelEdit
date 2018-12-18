@@ -10,7 +10,7 @@
 #import "FMPhotoEditItem.h"
 #import "Masonry.h"
 
-@interface FMPhotoEditItem ()
+@interface FMPhotoEditItem () <UIGestureRecognizerDelegate>
 
 @end
 static const CGFloat margin = 5.f;
@@ -62,6 +62,16 @@ static const CGFloat margin = 5.f;
         [self.delegate photoItem:self longPressGesture:gesture];
     }
 }
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(photoItem:longPressGestureShouldBegin:)]) {
+        return [self.delegate photoItem:self longPressGestureShouldBegin:(UILongPressGestureRecognizer *)gestureRecognizer];
+    }
+    
+    return YES;
+}
+
 
 /*
  - (void)panGesture:(UIPanGestureRecognizer *)gesture {

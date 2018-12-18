@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UIButton *addPhotoButton;
 @property (nonatomic, strong) NSMutableArray *cacheItemFrameArr;
 @property (nonatomic, strong) FMPhotoEditItem *placeholderItem;
+@property (nonatomic, assign) BOOL hasMovingItem;
 
 @end
 // 一行放 **小图** 的个数
@@ -154,6 +155,11 @@ static const NSInteger rowCount = 4;
 }
 
 #pragma mark --- FMPhotoEditItem Delegate
+
+- (BOOL)photoItem:(FMPhotoEditItem *)photoItem panGestureShouldBegin:(UILongPressGestureRecognizer *)gesture {
+    return !_hasMovingItem;
+}
+
 - (void)photoItem:(FMPhotoEditItem *)photoItem tapGesture:(UITapGestureRecognizer *)gesture {
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(photoEditView:item:itemAtIndex:)]) {
@@ -170,7 +176,7 @@ static const NSInteger rowCount = 4;
 
 - (void)photoItem:(FMPhotoEditItem *)photoItem longPressGesture:(UILongPressGestureRecognizer *)gesture {
 //    if (_photosArr.count == 1) return;
-    
+    _hasMovingItem = YES;
     static CGFloat offsetX;// X 方向的偏移量
     static CGFloat offsetY;// Y 方向的偏移量
     static NSInteger markIndex;
@@ -252,7 +258,7 @@ static const NSInteger rowCount = 4;
         }
             break;
         case UIGestureRecognizerStateEnded: {
-            
+            _hasMovingItem = NO;
             [self moveItem:photoItem toIndex:_moveToIndex];
             // 更新视图
 //            NSLog(@"start --- %ld, moveTo --- %ld", (long)_startIndex, (long)_moveToIndex);

@@ -18,6 +18,9 @@
 /// 拖拽事件
 - (void)photoItem:(TUSelectPhotoEditorItem *)photoItem panGesture:(UIPanGestureRecognizer *)gesture;
 
+/// 是否开始该手势
+- (BOOL)photoItem:(TUSelectPhotoEditorItem *)photoItem panGestureShouldBegin:(UIPanGestureRecognizer *)gesture;
+
 @end
 
 @interface TUSelectPhotoEditorItem : UIView

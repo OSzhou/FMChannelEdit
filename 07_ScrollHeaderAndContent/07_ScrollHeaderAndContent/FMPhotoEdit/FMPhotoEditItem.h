@@ -16,6 +16,10 @@
 
 /// 点击长按事件
 - (void)photoItem:(FMPhotoEditItem *)photoItem longPressGesture:(UILongPressGestureRecognizer *)gesture;
+
+/// 是否开始该手势
+- (BOOL)photoItem:(FMPhotoEditItem *)photoItem longPressGestureShouldBegin:(UILongPressGestureRecognizer *)gesture;
+
 /*
  /// 点击拖拽事件(无编辑按钮时 - 用不到 - )
  - (void)photoItem:(FMPhotoEditItem *)photoItem panGesture:(UIPanGestureRecognizer *)gesture;

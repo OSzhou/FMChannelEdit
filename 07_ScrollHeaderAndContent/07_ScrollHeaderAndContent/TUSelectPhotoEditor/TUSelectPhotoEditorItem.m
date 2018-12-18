@@ -8,7 +8,7 @@
 
 #import "TUSelectPhotoEditorItem.h"
 
-@interface TUSelectPhotoEditorItem ()
+@interface TUSelectPhotoEditorItem () <UIGestureRecognizerDelegate>
 
 
 
@@ -58,6 +58,15 @@ static const CGFloat margin = 5.f;
      [self.delegate photoItem:self panGesture:gesture];
      }
  }
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(photoItem:panGestureShouldBegin:)]) {
+        return [self.delegate photoItem:self panGestureShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer];
+    }
+    
+    return YES;
+}
 
 #pragma mark --- lazy loading
 
