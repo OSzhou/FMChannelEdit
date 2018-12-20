@@ -214,26 +214,41 @@ static const NSInteger rowCount = 4;
             
             CGPoint movePoint = [gesture locationInView:self];
             photoItem.center = CGPointMake(movePoint.x - offsetX, movePoint.y - offsetY);
-            CGFloat x = photoItem.center.x;
-            CGFloat y = photoItem.center.y;
+//            CGFloat x = photoItem.center.x;
+//            CGFloat y = photoItem.center.y;
             /*UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
             CGRect rect1 = [photoItem convertRect:photoItem.bounds toView:keyWindow];
             CGRect rect2 = [self convertRect:self.bounds toView:keyWindow];*/
             //x > 0 && y > 0 && x < self.width && y < self.height
             if (CGRectContainsPoint(self.bounds, photoItem.center)) {
                 
-                // 九宫格对应的index
-                NSInteger tempIndex = (NSInteger)(y / (_smallWidth)) * rowCount + (NSInteger)(x / (_smallWidth));
-                // 对应后的index
+                /*
+                 // 计算我们需要的index：方式一
+                 // 十二宫格对应的index
+                 // 所在行号 * item的高 + 所在列号 = 十二宫格对应的index
+                 NSInteger tempIndex = (NSInteger)(y / (_smallWidth)) * rowCount + (NSInteger)(x / (_smallWidth));
+                 // 对应后的实际index
+                 NSInteger realIndex = 0;
+                 if (tempIndex <= 5) {// 12宫格对应index小于5时
+                 if (tempIndex == 2 || tempIndex == 3) {// 2，3 减 1 后得实际index
+                 realIndex = tempIndex - 1;
+                 } else { // 其它都是大图所在位置也就是index = 0
+                 realIndex = 0;
+                 }
+                 } else {// 12宫格对应index大于5时，减3和实际index对应
+                 realIndex = tempIndex - 3;
+                 }*/
+                
+                // 计算我们需要的index：方式二
                 NSInteger realIndex = 0;
-                if (tempIndex <= 5) {
-                    if (tempIndex == 2 || tempIndex == 3) {
-                        realIndex = tempIndex - 1;
-                    } else {
-                        realIndex = 0;
+                // 通过判断 点 是否在缓存frame中，来返回要交换的index
+                for (int i = 0; i < _cacheItemFrameArr.count; i ++) {
+                    NSValue *frame = _cacheItemFrameArr[i];
+                    CGRect rect = [frame CGRectValue];
+                    if (CGRectContainsPoint(rect, photoItem.center)) {
+                        realIndex = i;
+                        break;
                     }
-                } else {
-                    realIndex = tempIndex - 3;
                 }
                 
                 if (realIndex != markIndex) {
