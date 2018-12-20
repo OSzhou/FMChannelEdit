@@ -126,7 +126,14 @@ static const NSInteger rowCount = 4;
 #pragma mark --- TUSelectPhotoEditorItem Delegate
 
 - (BOOL)photoItem:(TUSelectPhotoEditorItem *)photoItem panGestureShouldBegin:(UIPanGestureRecognizer *)gesture {
-    return !_hasMovingItem;
+    
+    if (!_hasMovingItem) {
+        _hasMovingItem = YES;
+        return YES;
+    } else {
+        return NO;
+    }
+    
 }
 
 - (void)photoItem:(TUSelectPhotoEditorItem *)photoItem tapGesture:(UITapGestureRecognizer *)gesture {
@@ -231,6 +238,7 @@ static const NSInteger rowCount = 4;
          case UIGestureRecognizerStateCancelled:
          case UIGestureRecognizerStateFailed:{
              // 状态回置
+             _hasMovingItem = NO;
              [self moveItem:photoItem toIndex:_moveToIndex];
              if (self.delegate && [self.delegate respondsToSelector:@selector(photoEditView:panCancelOrFailWithItem:)]) {
                  [self.delegate photoEditView:self panCancelOrFailWithItem:photoItem];

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9730E66821C9F61900C84DEF /* UIView+FMBoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 9730E66721C9F61900C84DEF /* UIView+FMBoom.m */; };
+		9730E66B21CA079000C84DEF /* UIView+TUBomb.m in Sources */ = {isa = PBXBuildFile; fileRef = 9730E66A21CA079000C84DEF /* UIView+TUBomb.m */; };
 		9764A37A21A3DB620019E321 /* FMTestAddPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9764A37921A3DB620019E321 /* FMTestAddPhotoController.m */; };
 		9764A37E21A6BAD50019E321 /* TUSelectPhotoEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9764A37D21A6BAD50019E321 /* TUSelectPhotoEditorViewController.m */; };
 		9764A38121A6BAE00019E321 /* TUSelectPhotoEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9764A38021A6BAE00019E321 /* TUSelectPhotoEditorView.m */; };
@@ -69,6 +71,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9730E66621C9F61900C84DEF /* UIView+FMBoom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+FMBoom.h"; sourceTree = "<group>"; };
+		9730E66721C9F61900C84DEF /* UIView+FMBoom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+FMBoom.m"; sourceTree = "<group>"; };
+		9730E66921CA079000C84DEF /* UIView+TUBomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TUBomb.h"; sourceTree = "<group>"; };
+		9730E66A21CA079000C84DEF /* UIView+TUBomb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TUBomb.m"; sourceTree = "<group>"; };
 		9764A37721A2B1830019E321 /* FMOriginalCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMOriginalCode.m; sourceTree = "<group>"; };
 		9764A37821A3DB620019E321 /* FMTestAddPhotoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMTestAddPhotoController.h; sourceTree = "<group>"; };
 		9764A37921A3DB620019E321 /* FMTestAddPhotoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMTestAddPhotoController.m; sourceTree = "<group>"; };
@@ -187,6 +193,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9730E66521C9F5EA00C84DEF /* FMBoom */ = {
+			isa = PBXGroup;
+			children = (
+				9730E66921CA079000C84DEF /* UIView+TUBomb.h */,
+				9730E66A21CA079000C84DEF /* UIView+TUBomb.m */,
+				9730E66621C9F61900C84DEF /* UIView+FMBoom.h */,
+				9730E66721C9F61900C84DEF /* UIView+FMBoom.m */,
+			);
+			path = FMBoom;
+			sourceTree = "<group>";
+		};
 		9764A37B21A6BA560019E321 /* TUSelectPhotoEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +300,7 @@
 		E527E6421E5D25DF0069D382 /* 07_ScrollHeaderAndContent */ = {
 			isa = PBXGroup;
 			children = (
+				9730E66521C9F5EA00C84DEF /* FMBoom */,
 				9764A37B21A6BA560019E321 /* TUSelectPhotoEditor */,
 				9780528A219EC30D0008E493 /* Library */,
 				9780527F219C1D740008E493 /* FMPhotoEdit */,
@@ -535,10 +553,12 @@
 				978052A8219EC30D0008E493 /* MASConstraintMaker.m in Sources */,
 				E5EAA5991E83D54000E870AF /* YLDargSortCell.m in Sources */,
 				978052AB219EC30D0008E493 /* View+MASAdditions.m in Sources */,
+				9730E66821C9F61900C84DEF /* UIView+FMBoom.m in Sources */,
 				9764A38421A6BB010019E321 /* TUSelectPhotoEditorItem.m in Sources */,
 				E5EAA5A11E83D55500E870AF /* FMHeaderReusableView.m in Sources */,
 				E527E6481E5D25DF0069D382 /* AppDelegate.m in Sources */,
 				E527E67F1E5D2CFC0069D382 /* FMTitleLabel.m in Sources */,
+				9730E66B21CA079000C84DEF /* UIView+TUBomb.m in Sources */,
 				978052AC219EC30D0008E493 /* MASConstraint.m in Sources */,
 				9764A39A21B00A250019E321 /* ControlTestView.m in Sources */,
 				9764A37E21A6BAD50019E321 /* TUSelectPhotoEditorViewController.m in Sources */,

@@ -61,7 +61,7 @@ static const CGFloat margin = 5.f;
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(photoItem:panGestureShouldBegin:)]) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(photoItem:panGestureShouldBegin:)] && [gestureRecognizer.view isMemberOfClass:[self class]] && [gestureRecognizer isMemberOfClass:[UIPanGestureRecognizer class]]) {
         return [self.delegate photoItem:self panGestureShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer];
     }
     

@@ -157,7 +157,14 @@ static const NSInteger rowCount = 4;
 #pragma mark --- FMPhotoEditItem Delegate
 
 - (BOOL)photoItem:(FMPhotoEditItem *)photoItem panGestureShouldBegin:(UILongPressGestureRecognizer *)gesture {
-    return !_hasMovingItem;
+    
+    if (!_hasMovingItem) {
+        _hasMovingItem = YES;
+        return YES;
+    } else {
+        return NO;
+    }
+    
 }
 
 - (void)photoItem:(FMPhotoEditItem *)photoItem tapGesture:(UITapGestureRecognizer *)gesture {
@@ -176,7 +183,7 @@ static const NSInteger rowCount = 4;
 
 - (void)photoItem:(FMPhotoEditItem *)photoItem longPressGesture:(UILongPressGestureRecognizer *)gesture {
 //    if (_photosArr.count == 1) return;
-    _hasMovingItem = YES;
+    
     static CGFloat offsetX;// X 方向的偏移量
     static CGFloat offsetY;// Y 方向的偏移量
     static NSInteger markIndex;
@@ -269,6 +276,7 @@ static const NSInteger rowCount = 4;
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateFailed:{
             // 状态回置
+            _hasMovingItem = NO;
             [self moveItem:photoItem toIndex:_moveToIndex];
             if (self.delegate && [self.delegate respondsToSelector:@selector(photoEditView:longPressCancelOrFailWithItem:)]) {
                 [self.delegate photoEditView:self longPressCancelOrFailWithItem:photoItem];
