@@ -12,6 +12,8 @@
 #import "LRLChannelEditController.h"
 #import "ChannelUnitModel.h"
 #import "YLDragSortViewController.h"
+#import "FMPhotoEditViewController.h"
+#import "TUSelectPhotoEditorViewController.h"
 
 @interface FMBasicViewController () <UIScrollViewDelegate>
 
@@ -250,7 +252,7 @@
 
 - (void)toSortView:(UIButton *)sender {
     PopoverView *popoverView = [PopoverView new];
-    popoverView.menuTitles   = @[@"方式一：自定义按钮", @"方式二：用UICollectionView"];
+    popoverView.menuTitles   = @[@"方式一：自定义按钮", @"方式二：用UICollectionView", @"pan图片选择编辑器", @"longpPress图片选择编辑器"];
     __weak __typeof(&*self)weakSelf = self;
     [popoverView showFromView:sender selected:^(NSInteger index) {
         if (!index) {
@@ -271,8 +273,14 @@
             
             channelEdit.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             [weakSelf presentViewController:channelEdit animated:YES completion:nil];
-        } else {
+        } else if (index == 1) {
             YLDragSortViewController *vc = [[YLDragSortViewController alloc] init];
+            [weakSelf presentViewController:vc animated:YES completion:nil];
+        } else if (index == 2) {
+            TUSelectPhotoEditorViewController *vc = [[TUSelectPhotoEditorViewController alloc] init];
+            [weakSelf presentViewController:vc animated:YES completion:nil];
+        } else if (index == 3) {
+            FMPhotoEditViewController *vc = [[FMPhotoEditViewController alloc] init];
             [weakSelf presentViewController:vc animated:YES completion:nil];
         }
     }];
