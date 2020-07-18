@@ -331,6 +331,7 @@
                     if ([self.topViewArr containsObject:self.clearView]) {
                         [self.topViewArr removeObject:self.clearView];
                     }
+                    
                     [self.topViewArr insertObject:self.clearView atIndex:staticIndex];
                     if (!self.clearView.superview) {
                         [self.scrollView addSubview:self.clearView];
